@@ -1,0 +1,70 @@
+[
+  {
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "title": "Condicionales y validaciones básicas",
+    "allowed_topics": [
+      "input",
+      "print",
+      "if",
+      "elif",
+      "else",
+      "strip",
+      "isdigit"
+    ],
+    "blocked_topics": [
+      "try/except",
+      "regex",
+      "listas",
+      "funciones",
+      "diccionarios"
+    ],
+    "learning_objectives": [
+      "Solicitar datos al usuario con input().",
+      "Limpiar espacios innecesarios con strip().",
+      "Validar que un campo no esté vacío antes de usarlo.",
+      "Validar números con isdigit() antes de convertirlos.",
+      "Usar if, elif y else para tomar decisiones simples."
+    ],
+    "common_errors": [
+      "Convertir con int() antes de comprobar que el texto sea numérico.",
+      "No contemplar entradas vacías.",
+      "Olvidar strip() y aceptar respuestas con solo espacios.",
+      "Usar condicionales sin else para el caso alternativo.",
+      "Resolver con temas todavía no trabajados en la clase."
+    ]
+  },
+  {
+    "class_id": "web-inicial-clase-01",
+    "language": "html",
+    "title": "Estructura básica de una página web",
+    "allowed_topics": [
+      "html",
+      "head",
+      "body",
+      "h1",
+      "h2",
+      "p",
+      "link",
+      "css",
+      "script"
+    ],
+    "blocked_topics": [
+      "frameworks",
+      "componentes",
+      "build tools"
+    ],
+    "learning_objectives": [
+      "Crear una estructura HTML con head y body.",
+      "Incluir títulos y párrafos visibles.",
+      "Conectar estilos CSS externos cuando corresponda.",
+      "Separar comportamiento JavaScript en un archivo propio."
+    ],
+    "common_errors": [
+      "No cerrar etiquetas principales.",
+      "Ubicar contenido visible fuera del body.",
+      "No incluir ningún encabezado.",
+      "Mezclar estilos sin un archivo CSS cuando la consigna pide separación."
+    ]
+  }
+]

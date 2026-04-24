@@ -1,0 +1,18 @@
+[
+  {
+    "id": "python-inicial-clase-03-guia",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "type": "lesson_notes",
+    "title": "Guía de condicionales y validaciones básicas",
+    "source": "local-seed-data"
+  },
+  {
+    "id": "web-inicial-clase-01-guia",
+    "class_id": "web-inicial-clase-01",
+    "language": "html",
+    "type": "lesson_notes",
+    "title": "Guía de estructura HTML básica",
+    "source": "local-seed-data"
+  }
+]

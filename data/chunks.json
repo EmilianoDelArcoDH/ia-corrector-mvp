@@ -1,0 +1,42 @@
+[
+  {
+    "id": "py03-isdigit",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "keywords": ["isdigit", "numero", "número", "validar", "int"],
+    "title": "Validación numérica con isdigit",
+    "content": "isdigit() permite comprobar si un texto contiene solamente dígitos antes de convertirlo a número. En esta clase se espera validar primero y convertir después."
+  },
+  {
+    "id": "py03-strip",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "keywords": ["strip", "espacios", "vacío", "vacio", "input"],
+    "title": "Limpieza de espacios con strip",
+    "content": "strip() elimina espacios al inicio y al final de un texto. Es útil después de input() para evitar aceptar campos que parecen completos pero solo tienen espacios."
+  },
+  {
+    "id": "py03-if-elif-else",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "keywords": ["if", "elif", "else", "condicionales", "decisiones"],
+    "title": "Condicionales if, elif y else",
+    "content": "if, elif y else permiten separar caminos según una condición. En una validación básica, el programa debe distinguir casos válidos e inválidos con mensajes claros."
+  },
+  {
+    "id": "py03-empty-fields",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "keywords": ["vacío", "vacio", "campos", "validación", "validacion", "strip"],
+    "title": "Validación de campos vacíos",
+    "content": "Un campo vacío debe detectarse antes de continuar. Si se usa strip(), también se detectan entradas formadas solamente por espacios."
+  },
+  {
+    "id": "web01-html-structure",
+    "class_id": "web-inicial-clase-01",
+    "language": "html",
+    "keywords": ["head", "body", "h1", "h2", "p", "estructura"],
+    "title": "Estructura HTML mínima",
+    "content": "Una página HTML inicial debe tener head y body cerrados correctamente. El contenido visible suele organizarse con encabezados y párrafos."
+  }
+]
