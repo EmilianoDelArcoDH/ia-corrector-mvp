@@ -16,6 +16,7 @@ def build_prompt(
     mode: str,
     language: str,
     class_metadata: dict[str, Any],
+    class_content_summary: dict[str, Any],
     grader_result: dict[str, Any],
     context_chunks: list[dict[str, Any]],
 ) -> str:
@@ -46,6 +47,11 @@ Temas bloqueados: {", ".join(blocked_topics)}
 Objetivos de aprendizaje:
 {_bullet_list(class_metadata.get("learning_objectives", []))}
 
+Contenido de la clase:
+- Recursos: {_bullet_list(class_content_summary.get("resource_titles", []))}
+- Tipos de recurso: {_bullet_list(class_content_summary.get("resource_types", []))}
+- Palabras clave: {", ".join(class_content_summary.get("keywords", [])) or "Ninguna."}
+
 Resultado objetivo:
 - Aprobado: {grader_result.get("passed")}
 - Puntaje: {grader_result.get("score")}
@@ -66,6 +72,7 @@ async def generate_feedback(
     mode: str,
     language: str,
     class_metadata: dict[str, Any],
+    class_content_summary: dict[str, Any],
     grader_result: dict[str, Any],
     context_chunks: list[dict[str, Any]],
 ) -> str:
@@ -73,6 +80,7 @@ async def generate_feedback(
         mode=mode,
         language=language,
         class_metadata=class_metadata,
+        class_content_summary=class_content_summary,
         grader_result=grader_result,
         context_chunks=context_chunks,
     )

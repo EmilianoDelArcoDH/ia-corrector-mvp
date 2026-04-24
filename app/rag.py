@@ -14,6 +14,14 @@ def load_chunks() -> list[dict[str, Any]]:
     return load_json(DATA_DIR / "chunks.json")
 
 
+@lru_cache(maxsize=1)
+def load_class_catalog() -> list[dict[str, Any]]:
+    path = DATA_DIR / "class_catalog.json"
+    if not path.exists():
+        return []
+    return load_json(path)
+
+
 def get_class_metadata(class_id: str, language: str) -> dict[str, Any] | None:
     normalized_language = language.lower()
     for item in load_classes_metadata():
@@ -55,6 +63,21 @@ def search_chunks(
 
     scored_chunks.sort(key=lambda item: item[0], reverse=True)
     return [chunk for _, chunk in scored_chunks[:top_k]]
+
+
+def get_class_content_summary(class_id: str, language: str) -> dict[str, Any]:
+    normalized_language = language.lower()
+    for item in load_class_catalog():
+        if item["class_id"] == class_id and item["language"].lower() == normalized_language:
+            return item
+    return {
+        "class_id": class_id,
+        "language": language,
+        "resource_ids": [],
+        "resource_titles": [],
+        "resource_types": [],
+        "keywords": [],
+    }
 
 
 # TODO: Replace keyword scoring with vector search when embeddings are introduced.

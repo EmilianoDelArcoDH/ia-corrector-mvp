@@ -14,11 +14,23 @@ class SupportedLanguage(str, Enum):
     html = "html"
     css = "css"
     js = "js"
+    spreadsheet = "spreadsheet"
+    sheet = "sheet"
+    csv = "csv"
+
+
+class SubmissionKind(str, Enum):
+    file = "file"
+    link = "link"
+    text = "text"
 
 
 class SubmittedFile(BaseModel):
     name: str = Field(..., min_length=1)
-    content: str
+    content: str = ""
+    url: str | None = None
+    mime_type: str | None = None
+    kind: SubmissionKind = SubmissionKind.file
 
 
 class FeedbackRequest(BaseModel):

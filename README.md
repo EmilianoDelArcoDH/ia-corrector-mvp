@@ -2,6 +2,54 @@
 
 MVP de una API con FastAPI para corregir entregas educativas. Primero aplica un corrector objetivo y luego usa Ollama local para redactar feedback pedagogico.
 
+La API acepta entregas en texto/codigo, archivos y enlaces. Eso permite corregir tanto repositorios de codigo como planillas exportadas o publicadas mediante URL.
+
+Si queres subir archivos binarios directamente, usa `POST /feedback/upload` con `multipart/form-data`. Ese endpoint convierte `.csv` y `.xlsx` a texto antes de corregirlos.
+
+## Base de contenido
+
+Para construir la base de contenido desde materiales de clase, usá el manifiesto de fuentes y el script de ingesta:
+
+```bash
+python scripts/build_content_base.py --manifest content_sources/manifest.json --output-dir data --base-dir .
+```
+
+Ejemplo de `content_sources/manifest.json`:
+
+```json
+[
+  {
+    "id": "python-inicial-clase-03-guia",
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "type": "lesson_notes",
+    "title": "Guía de condicionales y validaciones básicas",
+    "source": "file",
+    "path": "content/python/clase-03/guia.md",
+    "keywords": ["input", "strip", "isdigit", "if", "else"]
+  },
+  {
+    "id": "web-inicial-clase-01-slides",
+    "class_id": "web-inicial-clase-01",
+    "language": "html",
+    "type": "slides",
+    "title": "Diapositivas de estructura HTML",
+    "source": "url",
+    "url": "https://docs.google.com/presentation/d/...",
+    "keywords": ["html", "head", "body", "p"]
+  }
+]
+```
+
+El script genera:
+
+- `data/resources_metadata.json`
+- `data/chunks.json`
+- `data/class_catalog.json`
+
+Cada recurso se normaliza a texto, se divide en chunks y se le agregan palabras clave para que el RAG recupere mejor el contenido de la clase.
+El catalogo de clase resume que recursos tiene cada `class_id` y ayuda al modelo a entender mejor el contexto de la materia.
+
 ## Requisitos
 
 - Python 3.11+
@@ -100,6 +148,49 @@ curl -X POST http://localhost:8000/feedback \
   }'
 ```
 
+Tambien podes enviar una entrega tipo enlace o una planilla:
+
+```json
+{
+  "class_id": "spreadsheet-basico-clase-01",
+  "mode": "graded",
+  "language": "sheet",
+  "files": [
+    {
+      "name": "entrega",
+      "kind": "link",
+      "url": "https://example.com/mi-planilla-publica.csv"
+    }
+  ]
+}
+```
+
+```json
+{
+  "class_id": "spreadsheet-basico-clase-01",
+  "mode": "graded",
+  "language": "csv",
+  "files": [
+    {
+      "name": "ventas.csv",
+      "kind": "file",
+      "mime_type": "text/csv",
+      "content": "mes,total\nenero,10\nfebrero,12"
+    }
+  ]
+}
+```
+
+Tambien esta disponible la version para archivos reales:
+
+```bash
+curl -X POST http://localhost:8000/feedback/upload \
+  -F "class_id=spreadsheet-basico-clase-01" \
+  -F "mode=graded" \
+  -F "language=sheet" \
+  -F "files=@./ventas.xlsx"
+```
+
 Salida esperada, con `feedback` redactado por el modelo:
 
 ```json
@@ -161,7 +252,7 @@ ia-corrector-mvp/
 
 ## Diseno del MVP
 
-- `grader.py`: determina aciertos, errores, score y aprobacion.
+- `grader.py`: determina aciertos, errores, score y aprobacion para codigo y planillas.
 - `rag.py`: recupera contexto por palabras clave filtrando por clase y lenguaje.
 - `llm.py`: arma el prompt, llama a Ollama y sanitiza temas bloqueados.
 - `main.py`: coordina validacion, grading, RAG y feedback.

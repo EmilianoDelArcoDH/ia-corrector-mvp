@@ -1,0 +1,56 @@
+[
+  {
+    "class_id": "python-inicial-clase-03",
+    "language": "python",
+    "resource_ids": [
+      "python-inicial-clase-03-guia"
+    ],
+    "resource_titles": [
+      "Guía de condicionales y validaciones básicas"
+    ],
+    "resource_types": [
+      "lesson_notes"
+    ],
+    "keywords": [
+      "isdigit",
+      "numero",
+      "número",
+      "validar",
+      "int",
+      "strip",
+      "espacios",
+      "vacío",
+      "vacio",
+      "input",
+      "if",
+      "elif",
+      "else",
+      "condicionales",
+      "decisiones",
+      "campos",
+      "validación",
+      "validacion"
+    ]
+  },
+  {
+    "class_id": "web-inicial-clase-01",
+    "language": "html",
+    "resource_ids": [
+      "web-inicial-clase-01-guia"
+    ],
+    "resource_titles": [
+      "Guía de estructura HTML básica"
+    ],
+    "resource_types": [
+      "lesson_notes"
+    ],
+    "keywords": [
+      "head",
+      "body",
+      "h1",
+      "h2",
+      "p",
+      "estructura"
+    ]
+  }
+]
