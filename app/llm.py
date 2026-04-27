@@ -11,6 +11,9 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 OLLAMA_TIMEOUT_SECONDS = float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "180"))
 OLLAMA_NUM_PREDICT = int(os.getenv("OLLAMA_NUM_PREDICT", "220"))
 OLLAMA_CONTEXT_CHARS = int(os.getenv("OLLAMA_CONTEXT_CHARS", "900"))
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+GEMINI_TIMEOUT_SECONDS = float(os.getenv("GEMINI_TIMEOUT_SECONDS", "90"))
 
 
 def build_prompt(
@@ -105,6 +108,15 @@ async def generate_feedback(
         grader_result=grader_result,
         context_chunks=context_chunks,
     )
+
+    gemini_key = os.getenv("GEMINI_API_KEY", GEMINI_API_KEY).strip()
+    if gemini_key:
+        raw_feedback = await _generate_with_gemini(prompt, gemini_key)
+        if raw_feedback:
+            if not grader_result.get("errors") and _mentions_pending_work(raw_feedback):
+                raw_feedback = successful_feedback(grader_result=grader_result, class_metadata=class_metadata)
+            return sanitize_feedback(raw_feedback, class_metadata.get("blocked_topics", []))
+
     payload = {
         "model": os.getenv("OLLAMA_MODEL", OLLAMA_MODEL),
         "prompt": prompt,
@@ -144,6 +156,36 @@ async def generate_feedback(
         raw_feedback = successful_feedback(grader_result=grader_result, class_metadata=class_metadata)
 
     return sanitize_feedback(raw_feedback, class_metadata.get("blocked_topics", []))
+
+
+async def _generate_with_gemini(prompt: str, api_key: str) -> str | None:
+    model = os.getenv("GEMINI_MODEL", GEMINI_MODEL).strip()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    payload = {
+        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0.25,
+            "maxOutputTokens": int(os.getenv("GEMINI_MAX_OUTPUT_TOKENS", "420")),
+        },
+    }
+    try:
+        async with httpx.AsyncClient(timeout=float(os.getenv("GEMINI_TIMEOUT_SECONDS", str(GEMINI_TIMEOUT_SECONDS)))) as client:
+            response = await client.post(
+                url,
+                params={"key": api_key},
+                json=payload,
+            )
+            response.raise_for_status()
+    except (httpx.ConnectError, httpx.TimeoutException, httpx.HTTPStatusError, httpx.HTTPError):
+        return None
+
+    data = response.json()
+    candidates = data.get("candidates") or []
+    if not candidates:
+        return None
+    parts = candidates[0].get("content", {}).get("parts", [])
+    text = "\n".join(str(part.get("text", "")).strip() for part in parts if part.get("text"))
+    return text.strip() or None
 
 
 def sanitize_feedback(text: str, blocked_topics: list[str]) -> str:
