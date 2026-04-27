@@ -1,0 +1,9 @@
+.git
+.venv
+.agents
+__pycache__
+*.pyc
+*.log
+node_modules
+skills-lock.json
+README.md
