@@ -1,0 +1,725 @@
+[
+  {
+    "id": "data-clases-copia-de-dsd-st2-data-in-copia-de-dsd-st2-data-introduccion-data-02-slides",
+    "class_id": "data-clases-copia-de-dsd-st2-data-in",
+    "language": "data",
+    "type": "slides",
+    "title": "Copia de DSD ST2 DATA - Introducción DATA 02",
+    "source": "file",
+    "path": "data/clases/Copia de DSD ST2_DATA - Introducción DATA 02.pptx",
+    "keywords": [
+      "data-clases",
+      "general",
+      "copia",
+      "dsd",
+      "st2",
+      "data",
+      "introducción"
+    ]
+  },
+  {
+    "id": "data-1000-c01-introduccion-al-nivel-slides",
+    "class_id": "data-1000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Introducción al Nivel",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C01 - Introducción al Nivel.pptx",
+    "keywords": [
+      "data-1000",
+      "c01",
+      "introducción",
+      "nivel"
+    ]
+  },
+  {
+    "id": "data-1000-c01-que-es-data-analytics-slides",
+    "class_id": "data-1000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "¿Qué es Data Analytics",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C01 - ¿Qué es Data Analytics_.pptx",
+    "keywords": [
+      "data-1000",
+      "c01",
+      "qué",
+      "data",
+      "analytics"
+    ]
+  },
+  {
+    "id": "data-1000-c02-kpis-y-okrs-slides",
+    "class_id": "data-1000-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "KPIs y OKRs",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C02 - KPIs y OKRs_.pptx",
+    "keywords": [
+      "data-1000",
+      "c02",
+      "kpis",
+      "okrs"
+    ]
+  },
+  {
+    "id": "data-1000-c03-storytelling-slides",
+    "class_id": "data-1000-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Storytelling",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C03 - Storytelling.pptx",
+    "keywords": [
+      "data-1000",
+      "c03",
+      "storytelling"
+    ]
+  },
+  {
+    "id": "data-1000-c03-visualizacion-de-datos-slides",
+    "class_id": "data-1000-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Visualización de datos",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C03 - Visualización de datos.pptx",
+    "keywords": [
+      "data-1000",
+      "c03",
+      "visualización",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-1000-c04-hojas-de-calculo-01-intro-slides",
+    "class_id": "data-1000-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Hojas de Cálculo 01 - Intro",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C04 - Hojas de Cálculo 01 - Intro.pptx",
+    "keywords": [
+      "data-1000",
+      "c04",
+      "hojas",
+      "cálculo",
+      "intro"
+    ]
+  },
+  {
+    "id": "data-1000-c04-manipulacion-de-datos-slides",
+    "class_id": "data-1000-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Manipulación de Datos",
+    "source": "file",
+    "path": "data/clases/DATA_1000 - C04 - Manipulación de Datos.pptx",
+    "keywords": [
+      "data-1000",
+      "c04",
+      "manipulación",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-2001-c01-actividad-graficos-simples-slides",
+    "class_id": "data-2001-c01",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Gráficos Simples",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C01 - Actividad_ Gráficos Simples.pptx",
+    "keywords": [
+      "data-2001",
+      "c01",
+      "actividad",
+      "gráficos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-2001-c01-graficos-simples-slides",
+    "class_id": "data-2001-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Gráficos Simples",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C01 - Gráficos Simples.pptx",
+    "keywords": [
+      "data-2001",
+      "c01",
+      "gráficos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-2001-c02-actividad-recuentos-simples-slides",
+    "class_id": "data-2001-c02",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Recuentos simples",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C02 - Actividad_ Recuentos simples.pptx",
+    "keywords": [
+      "data-2001",
+      "c02",
+      "actividad",
+      "recuentos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-2001-c02-recuentos-simples-slides",
+    "class_id": "data-2001-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Recuentos simples",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C02 - Recuentos simples.pptx",
+    "keywords": [
+      "data-2001",
+      "c02",
+      "recuentos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-2001-c03-actividad-recuentos-condicionales-slides",
+    "class_id": "data-2001-c03",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Recuentos condicionales",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C03 - Actividad_ Recuentos condicionales.pptx",
+    "keywords": [
+      "data-2001",
+      "c03",
+      "actividad",
+      "recuentos",
+      "condicionales"
+    ]
+  },
+  {
+    "id": "data-2001-c03-recuentos-condicionales-slides",
+    "class_id": "data-2001-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Recuentos condicionales",
+    "source": "file",
+    "path": "data/clases/DATA_2001 - C03 - Recuentos condicionales_.pptx",
+    "keywords": [
+      "data-2001",
+      "c03",
+      "recuentos",
+      "condicionales"
+    ]
+  },
+  {
+    "id": "data-3001-c01-explorando-un-dashboard-slides",
+    "class_id": "data-3001-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Explorando un Dashboard",
+    "source": "file",
+    "path": "data/clases/DATA_3001 - C01 - Explorando un Dashboard.pptx",
+    "keywords": [
+      "data-3001",
+      "c01",
+      "explorando",
+      "dashboard"
+    ]
+  },
+  {
+    "id": "data-3001-c02-tablas-dinamicas-01-filas-columnas-y-valores-slides",
+    "class_id": "data-3001-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Tablas Dinámicas 01 Filas, Columnas y Valores",
+    "source": "file",
+    "path": "data/clases/DATA_3001 - C02 - Tablas Dinámicas 01_ Filas, Columnas y Valores.pptx",
+    "keywords": [
+      "data-3001",
+      "c02",
+      "tablas",
+      "dinámicas",
+      "filas",
+      "columnas",
+      "valores"
+    ]
+  },
+  {
+    "id": "data-3001-c03-tablas-dinamicas-02-tablas-jerarquizadas-y-filtros-internos-slides",
+    "class_id": "data-3001-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Tablas Dinámicas 02 Tablas jerarquizadas y Filtros Internos",
+    "source": "file",
+    "path": "data/clases/DATA_3001 - C03 - Tablas Dinámicas 02_ Tablas jerarquizadas y Filtros Internos_.pptx",
+    "keywords": [
+      "data-3001",
+      "c03",
+      "tablas",
+      "dinámicas",
+      "jerarquizadas",
+      "filtros",
+      "internos"
+    ]
+  },
+  {
+    "id": "data-3001-c04-tablas-dinamicas-03-graficos-slides",
+    "class_id": "data-3001-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Tablas Dinámicas 03 Gráficos",
+    "source": "file",
+    "path": "data/clases/DATA_3001 - C04 - Tablas Dinámicas 03_ Gráficos.pptx",
+    "keywords": [
+      "data-3001",
+      "c04",
+      "tablas",
+      "dinámicas",
+      "gráficos"
+    ]
+  },
+  {
+    "id": "data-4000-c01-campos-condicionales-y-sus-limitaciones-slides",
+    "class_id": "data-4000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Campos condicionales y sus limitaciones",
+    "source": "file",
+    "path": "data/clases/DATA_4000 - C01 - Campos condicionales  y sus limitaciones.pptx",
+    "keywords": [
+      "data-4000",
+      "c01",
+      "campos",
+      "condicionales",
+      "sus",
+      "limitaciones"
+    ]
+  },
+  {
+    "id": "data-4000-c02-aproximacion-a-los-modelos-de-datos-slides",
+    "class_id": "data-4000-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Aproximación a los Modelos de Datos",
+    "source": "file",
+    "path": "data/clases/DATA_4000 - C02 - Aproximación a los Modelos de Datos.pptx",
+    "keywords": [
+      "data-4000",
+      "c02",
+      "aproximación",
+      "modelos",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-4000-c03-combinacion-de-tablas-slides",
+    "class_id": "data-4000-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Combinación de Tablas",
+    "source": "file",
+    "path": "data/clases/DATA_4000 - C03 - Combinación de Tablas.pptx",
+    "keywords": [
+      "data-4000",
+      "c03",
+      "combinación",
+      "tablas"
+    ]
+  },
+  {
+    "id": "data-5000-c01-actividad-freciencia-e-histogramas-slides",
+    "class_id": "data-5000-c01",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Freciencia e histogramas",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C01 - Actividad_ Freciencia e histogramas_.pptx",
+    "keywords": [
+      "data-5000",
+      "c01",
+      "actividad",
+      "freciencia",
+      "histogramas"
+    ]
+  },
+  {
+    "id": "data-5000-c01-frecuencias-e-histogramas-slides",
+    "class_id": "data-5000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Frecuencias e histogramas",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C01 - Frecuencias e histogramas.pptx",
+    "keywords": [
+      "data-5000",
+      "c01",
+      "frecuencias",
+      "histogramas"
+    ]
+  },
+  {
+    "id": "data-5000-c02-actividad-cuantiles-percentiles-y-boxplot-slides",
+    "class_id": "data-5000-c02",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Cuantiles, percentiles y boxplot",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C02 - Actividad_ Cuantiles,  percentiles y boxplot.pptx",
+    "keywords": [
+      "data-5000",
+      "c02",
+      "actividad",
+      "cuantiles",
+      "percentiles",
+      "boxplot"
+    ]
+  },
+  {
+    "id": "data-5000-c02-cuantiles-y-boxplots-slides",
+    "class_id": "data-5000-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Cuantiles y boxplots",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C02 - Cuantiles y boxplots.pptx",
+    "keywords": [
+      "data-5000",
+      "c02",
+      "cuantiles",
+      "boxplots"
+    ]
+  },
+  {
+    "id": "data-5000-c03-actividad-correlacion-y-dispersion-slides",
+    "class_id": "data-5000-c03",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Correlación y Dispersión",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C03 - Actividad_ Correlación y Dispersión.pptx",
+    "keywords": [
+      "data-5000",
+      "c03",
+      "actividad",
+      "correlación",
+      "dispersión"
+    ]
+  },
+  {
+    "id": "data-5000-c03-correlacion-y-dispersion-slides",
+    "class_id": "data-5000-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Correlación y dispersión",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C03 - Correlación y dispersión.pptx",
+    "keywords": [
+      "data-5000",
+      "c03",
+      "correlación",
+      "dispersión"
+    ]
+  },
+  {
+    "id": "data-5000-c04-causalidad-vs-casualidad-slides",
+    "class_id": "data-5000-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Causalidad vs. Casualidad",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C04 - Causalidad vs. Casualidad.pptx",
+    "keywords": [
+      "data-5000",
+      "c04",
+      "causalidad",
+      "casualidad"
+    ]
+  },
+  {
+    "id": "data-5000-c04-ejemplo-proyecto-final-slides",
+    "class_id": "data-5000-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Ejemplo Proyecto final",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C04 - Ejemplo Proyecto final.pptx",
+    "keywords": [
+      "data-5000",
+      "c04",
+      "ejemplo",
+      "proyecto",
+      "final"
+    ]
+  },
+  {
+    "id": "data-5000-c04-proyecto-integrador-estadistica-slides",
+    "class_id": "data-5000-c04",
+    "language": "data",
+    "type": "project_slides",
+    "title": "Proyecto integrador Estadística",
+    "source": "file",
+    "path": "data/clases/DATA_5000 - C04 - Proyecto integrador_ Estadística.pptx",
+    "keywords": [
+      "data-5000",
+      "c04",
+      "proyecto",
+      "integrador",
+      "estadística"
+    ]
+  },
+  {
+    "id": "data-6000-c01-fuentes-de-datos-slides",
+    "class_id": "data-6000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Fuentes de datos",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C01 - Fuentes de datos.pptx",
+    "keywords": [
+      "data-6000",
+      "c01",
+      "fuentes",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-6000-c01-introduccion-a-looker-studio-slides",
+    "class_id": "data-6000-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Introducción a Looker Studio",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C01 - Introducción a Looker Studio.pptx",
+    "keywords": [
+      "data-6000",
+      "c01",
+      "introducción",
+      "looker",
+      "studio"
+    ]
+  },
+  {
+    "id": "data-6000-c02-mi-primer-dashboard-slides",
+    "class_id": "data-6000-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Mi primer dashboard",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C02 -  Mi primer dashboard.pptx",
+    "keywords": [
+      "data-6000",
+      "c02",
+      "primer",
+      "dashboard"
+    ]
+  },
+  {
+    "id": "data-6000-c02-actividad-mi-primer-dashboard-slides",
+    "class_id": "data-6000-c02",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Mi primer Dashboard",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C02 - Actividad_ Mi primer Dashboard.pptx",
+    "keywords": [
+      "data-6000",
+      "c02",
+      "actividad",
+      "primer",
+      "dashboard"
+    ]
+  },
+  {
+    "id": "data-6000-c02-graficos-simples-slides",
+    "class_id": "data-6000-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Gráficos simples",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C02 - Gráficos simples.pptx",
+    "keywords": [
+      "data-6000",
+      "c02",
+      "gráficos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-6000-c03-actividad-graficos-simples-slides",
+    "class_id": "data-6000-c03",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Gráficos Simples",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C03 -  Actividad_ Gráficos Simples_.pptx",
+    "keywords": [
+      "data-6000",
+      "c03",
+      "actividad",
+      "gráficos",
+      "simples"
+    ]
+  },
+  {
+    "id": "data-6000-c04-actividad-campos-calculados-slides",
+    "class_id": "data-6000-c04",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Campos calculados",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C04 - Actividad_ Campos calculados.pptx",
+    "keywords": [
+      "data-6000",
+      "c04",
+      "actividad",
+      "campos",
+      "calculados"
+    ]
+  },
+  {
+    "id": "data-6000-c04-campos-calculados-slides",
+    "class_id": "data-6000-c04",
+    "language": "data",
+    "type": "slides",
+    "title": "Campos calculados",
+    "source": "file",
+    "path": "data/clases/DATA_6000 - C04 - Campos calculados.pptx",
+    "keywords": [
+      "data-6000",
+      "c04",
+      "campos",
+      "calculados"
+    ]
+  },
+  {
+    "id": "data-6100-c01-actividad-combinacion-de-datos-slides",
+    "class_id": "data-6100-c01",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Combinación de Datos",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C01 - Actividad_ Combinación de Datos.pptx",
+    "keywords": [
+      "data-6100",
+      "c01",
+      "actividad",
+      "combinación",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-6100-c01-combinacion-de-datos-slides",
+    "class_id": "data-6100-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Combinación de datos",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C01 - Combinación de datos.pptx",
+    "keywords": [
+      "data-6100",
+      "c01",
+      "combinación",
+      "datos"
+    ]
+  },
+  {
+    "id": "data-6100-c02-actividad-apilamiento-y-dimensiones-slides",
+    "class_id": "data-6100-c02",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Apilamiento y Dimensiones",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C02 - Actividad_ Apilamiento y Dimensiones.pptx",
+    "keywords": [
+      "data-6100",
+      "c02",
+      "actividad",
+      "apilamiento",
+      "dimensiones"
+    ]
+  },
+  {
+    "id": "data-6100-c02-apilamiento-y-dimensiones-slides",
+    "class_id": "data-6100-c02",
+    "language": "data",
+    "type": "slides",
+    "title": "Apilamiento y Dimensiones",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C02 - Apilamiento y Dimensiones.pptx",
+    "keywords": [
+      "data-6100",
+      "c02",
+      "apilamiento",
+      "dimensiones"
+    ]
+  },
+  {
+    "id": "data-6100-c03-actividad-metricas-opcionales-y-filtros-slides",
+    "class_id": "data-6100-c03",
+    "language": "data",
+    "type": "activity_slides",
+    "title": "Actividad Métricas Opcionales y Filtros",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C03 - Actividad_ Métricas Opcionales y Filtros.pptx",
+    "keywords": [
+      "data-6100",
+      "c03",
+      "actividad",
+      "métricas",
+      "opcionales",
+      "filtros"
+    ]
+  },
+  {
+    "id": "data-6100-c03-metricas-opcionales-y-filtros-slides",
+    "class_id": "data-6100-c03",
+    "language": "data",
+    "type": "slides",
+    "title": "Métricas Opcionales y Filtros",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C03 - Métricas Opcionales y Filtros.pptx",
+    "keywords": [
+      "data-6100",
+      "c03",
+      "métricas",
+      "opcionales",
+      "filtros"
+    ]
+  },
+  {
+    "id": "data-6100-c04-proyecto-integrador-reportes-avanzados-slides",
+    "class_id": "data-6100-c04",
+    "language": "data",
+    "type": "project_slides",
+    "title": "Proyecto integrador Reportes avanzados",
+    "source": "file",
+    "path": "data/clases/DATA_6100 - C04 - Proyecto integrador_ Reportes avanzados.pptx",
+    "keywords": [
+      "data-6100",
+      "c04",
+      "proyecto",
+      "integrador",
+      "reportes",
+      "avanzados"
+    ]
+  },
+  {
+    "id": "data-9901-c01-dataton-slides",
+    "class_id": "data-9901-c01",
+    "language": "data",
+    "type": "slides",
+    "title": "Datatón",
+    "source": "file",
+    "path": "data/clases/DATA_9901 - C01 - Datatón .pptx",
+    "keywords": [
+      "data-9901",
+      "c01",
+      "datatón"
+    ]
+  }
+]

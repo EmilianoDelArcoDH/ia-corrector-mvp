@@ -4,22 +4,63 @@ from typing import Any
 from app.utils import DATA_DIR, load_json, tokenize
 
 
+def _load_optional_json_files(filenames: list[str]) -> list[dict[str, Any]]:
+    items: list[dict[str, Any]] = []
+    for filename in filenames:
+        path = DATA_DIR / filename
+        if not path.exists():
+            continue
+        payload = load_json(path)
+        if isinstance(payload, list):
+            items.extend(payload)
+    return items
+
+
 @lru_cache(maxsize=1)
 def load_classes_metadata() -> list[dict[str, Any]]:
-    return load_json(DATA_DIR / "classes_metadata.json")
+    return _load_optional_json_files(["classes_metadata.json", "pptx_classes_metadata.json"])
 
 
 @lru_cache(maxsize=1)
 def load_chunks() -> list[dict[str, Any]]:
-    return load_json(DATA_DIR / "chunks.json")
+    return _load_optional_json_files(["chunks.json", "pptx_chunks.json"])
 
 
 @lru_cache(maxsize=1)
 def load_class_catalog() -> list[dict[str, Any]]:
-    path = DATA_DIR / "class_catalog.json"
-    if not path.exists():
-        return []
-    return load_json(path)
+    return _load_optional_json_files(["class_catalog.json", "pptx_class_catalog.json"])
+
+
+def list_available_classes() -> list[dict[str, Any]]:
+    catalog_by_key: dict[tuple[str, str], dict[str, Any]] = {
+        (item["class_id"], item["language"].lower()): item for item in load_class_catalog()
+    }
+
+    classes: list[dict[str, Any]] = []
+    for metadata in load_classes_metadata():
+        key = (metadata["class_id"], metadata["language"].lower())
+        summary = catalog_by_key.get(key, {})
+        lesson_titles = list(
+            dict.fromkeys(
+                [
+                    *summary.get("resource_titles", []),
+                    *metadata.get("source_titles", []),
+                ]
+            )
+        )
+        classes.append(
+            {
+                "class_id": metadata["class_id"],
+                "language": metadata["language"],
+                "title": metadata.get("title", metadata["class_id"]),
+                "resource_titles": lesson_titles,
+                "resource_types": summary.get("resource_types", []),
+                "allowed_topics": metadata.get("allowed_topics", []),
+            }
+        )
+
+    classes.sort(key=lambda item: (item["language"] != "data", item["language"], item["class_id"]))
+    return classes
 
 
 def get_class_metadata(class_id: str, language: str) -> dict[str, Any] | None:

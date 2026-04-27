@@ -1,12 +1,14 @@
 import csv
 import json
 import re
+import xml.etree.ElementTree as ET
 from collections import Counter
 from dataclasses import dataclass
 from io import BytesIO, StringIO
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+from zipfile import ZipFile
 
 from app.utils import fetch_url_text, strip_html_tags
 
@@ -86,6 +88,8 @@ STOPWORDS = {
     "unas",
     "y",
     "ya",
+    "diapositiva",
+    "schools",
 }
 
 
@@ -154,6 +158,8 @@ def extract_text_from_file(path: str | Path) -> str:
         return _read_csv_text(file_path)
     if suffix in {".xlsx", ".xlsm"}:
         return _read_xlsx_text(file_path)
+    if suffix == ".pptx":
+        return _read_pptx_text(file_path)
     if suffix == ".pdf":
         return _read_pdf_text(file_path)
     return _read_text(file_path)
@@ -330,6 +336,32 @@ def _read_pdf_text(path: Path) -> str:
     return "\n\n".join(pages)
 
 
+def _read_pptx_text(path: Path) -> str:
+    namespace = {"a": "http://schemas.openxmlformats.org/drawingml/2006/main"}
+
+    try:
+        with ZipFile(path) as archive:
+            slides = sorted(
+                [
+                    name
+                    for name in archive.namelist()
+                    if name.startswith("ppt/slides/slide") and name.endswith(".xml")
+                ],
+                key=_extract_slide_number,
+            )
+            slide_texts: list[str] = []
+            for slide_name in slides:
+                root = ET.fromstring(archive.read(slide_name))
+                texts = [node.text.strip() for node in root.findall(".//a:t", namespace) if node.text and node.text.strip()]
+                if texts:
+                    slide_number = _extract_slide_number(slide_name)
+                    slide_texts.append(f"# Diapositiva {slide_number}\n" + "\n".join(texts))
+    except Exception:
+        return ""
+
+    return "\n\n".join(slide_texts)
+
+
 def _slice_long_text(text: str, *, chunk_size: int, overlap: int) -> list[str]:
     chunks: list[str] = []
     start = 0
@@ -342,6 +374,11 @@ def _slice_long_text(text: str, *, chunk_size: int, overlap: int) -> list[str]:
             break
         start = max(0, end - overlap)
     return chunks
+
+
+def _extract_slide_number(slide_name: str) -> int:
+    match = re.search(r"slide(\d+)\.xml$", slide_name)
+    return int(match.group(1)) if match else 0
 
 
 def _normalize_whitespace(text: str) -> str:

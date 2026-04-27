@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA Corrector MVP</title>
+    <link rel="stylesheet" href="/assets/globals.css" />
+    <link rel="stylesheet" href="/assets/playground.css" />
+  </head>
+  <body>
+    <main class="page-shell playground-shell">
+      <div class="page-grid playground-grid">
+        <section class="playground-hero surface-panel">
+          <div>
+            <p class="eyebrow">Sandbox data</p>
+            <h1>Vista de prueba para correcciones con IA</h1>
+            <p class="hero-copy">
+              Proba entregas de Data Analytics con texto, links publicos y archivos reales contra la API sin tocar el
+              CSS base del proyecto.
+            </p>
+          </div>
+          <div class="hero-meta surface-muted">
+            <span id="healthBadge" class="status-badge">API sin verificar</span>
+            <span id="classCount" class="meta-chip">Clases cargando...</span>
+          </div>
+        </section>
+
+        <section class="playground-layout">
+          <form id="playgroundForm" class="playground-form surface-panel" novalidate>
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">Configuración</p>
+                <h2>Entrega evaluable</h2>
+              </div>
+              <div class="mode-switch" role="tablist" aria-label="Tipo de envío">
+                <button type="button" class="switch-pill is-active" data-target="structured">Texto o link</button>
+                <button type="button" class="switch-pill" data-target="upload">Archivos reales</button>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Clase</span>
+                <select id="classSelect" name="class_id"></select>
+              </label>
+              <label class="field">
+                <span>Modo</span>
+                <select id="modeSelect" name="mode">
+                  <option value="practice">practice</option>
+                  <option value="graded">graded</option>
+                </select>
+              </label>
+              <label class="field">
+                  <span>Trayecto o tipo</span>
+                <input
+                  id="languageInput"
+                  name="language"
+                  list="languageOptions"
+                  value="data"
+                  placeholder="data, csv, sheet..."
+                />
+                <datalist id="languageOptions">
+                  <option value="data"></option>
+                  <option value="python"></option>
+                  <option value="html"></option>
+                  <option value="css"></option>
+                  <option value="js"></option>
+                  <option value="sheet"></option>
+                  <option value="spreadsheet"></option>
+                  <option value="csv"></option>
+                </datalist>
+              </label>
+            </div>
+
+            <div class="preset-row">
+              <button type="button" class="ghost-chip" data-preset="data-sheet">Preset Planilla</button>
+              <button type="button" class="ghost-chip" data-preset="data-dashboard">Preset Dashboard</button>
+              <button type="button" class="ghost-chip" data-preset="data-link">Preset Link publico</button>
+            </div>
+
+            <section id="structuredPanel" class="submission-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Entradas JSON</h3>
+                  <p>Usa este bloque para probar `POST /feedback` con entregas de data pegadas o links publicos.</p>
+                </div>
+                <button type="button" id="addEntryButton" class="secondary-button">Agregar entrada</button>
+              </div>
+              <div id="entriesContainer" class="entry-stack"></div>
+            </section>
+
+            <section id="uploadPanel" class="submission-panel is-hidden">
+              <div class="panel-header">
+                <div>
+                  <h3>Subida de archivos</h3>
+                  <p>Este flujo llama a `POST /feedback/upload` y sirve para CSV, XLSX, capturas exportadas o archivos auxiliares.</p>
+                </div>
+              </div>
+              <label class="field field-upload">
+                <span>Archivos</span>
+                <input id="fileInput" type="file" multiple />
+              </label>
+              <div id="fileList" class="file-list surface-muted">Todavía no hay archivos seleccionados.</div>
+            </section>
+
+            <div class="action-row">
+              <button type="submit" class="primary-button" id="submitButton">Enviar a corrección</button>
+              <button type="button" class="secondary-button" id="resetButton">Restablecer</button>
+            </div>
+          </form>
+
+          <aside class="playground-sidebar">
+            <section class="surface-panel sidebar-panel">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">Respuesta</p>
+                  <h2>Resultado de la evaluación</h2>
+                </div>
+              </div>
+              <div id="responseState" class="response-state surface-muted">
+                Todavía no enviamos ninguna entrega. Completá el formulario y probá una corrección.
+              </div>
+              <div id="responsePanel" class="response-panel is-hidden">
+                <div class="score-row">
+                  <div class="score-card surface-muted">
+                    <span>Score</span>
+                    <strong id="scoreValue">0</strong>
+                  </div>
+                  <div class="score-card surface-muted">
+                    <span>Estado</span>
+                    <strong id="passValue">Pendiente</strong>
+                  </div>
+                </div>
+                <div class="response-columns">
+                  <section>
+                    <h3>Logros detectados</h3>
+                    <ul id="successList" class="list-block"></ul>
+                  </section>
+                  <section>
+                    <h3>Puntos a corregir</h3>
+                    <ul id="errorList" class="list-block"></ul>
+                  </section>
+                </div>
+                <section>
+                  <h3>Contexto usado</h3>
+                  <div id="contextList" class="chip-list"></div>
+                </section>
+                <section>
+                  <h3>Feedback generado</h3>
+                  <article id="feedbackText" class="prose-app feedback-box surface-muted"></article>
+                </section>
+              </div>
+            </section>
+
+            <section class="surface-panel sidebar-panel">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">Clases disponibles</p>
+                  <h2>Referencia rápida</h2>
+                </div>
+              </div>
+              <div id="classCatalog" class="catalog-list"></div>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </main>
+
+    <template id="entryTemplate">
+      <article class="entry-card surface-muted">
+        <div class="entry-card-header">
+          <strong class="entry-title">Entrada</strong>
+          <button type="button" class="entry-remove">Quitar</button>
+        </div>
+        <div class="entry-grid">
+          <label class="field">
+            <span>Nombre</span>
+            <input class="entry-name" type="text" placeholder="main.py o entrega" />
+          </label>
+          <label class="field">
+            <span>Tipo</span>
+            <select class="entry-kind">
+              <option value="file">file</option>
+              <option value="text">text</option>
+              <option value="link">link</option>
+            </select>
+          </label>
+          <label class="field entry-mime-field">
+            <span>MIME opcional</span>
+            <input class="entry-mime" type="text" placeholder="text/csv, text/html..." />
+          </label>
+        </div>
+        <label class="field entry-content-field">
+          <span>Contenido</span>
+          <textarea class="entry-content" rows="8" placeholder="Pegá acá la entrega del alumno"></textarea>
+        </label>
+        <label class="field entry-url-field is-hidden">
+          <span>URL pública</span>
+          <input class="entry-url" type="url" placeholder="https://example.com/entrega.csv" />
+        </label>
+      </article>
+    </template>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

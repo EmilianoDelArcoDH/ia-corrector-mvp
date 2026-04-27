@@ -3,17 +3,17 @@
     "id": "py03-isdigit",
     "class_id": "python-inicial-clase-03",
     "language": "python",
-    "keywords": ["isdigit", "numero", "número", "validar", "int"],
-    "title": "Validación numérica con isdigit",
-    "content": "isdigit() permite comprobar si un texto contiene solamente dígitos antes de convertirlo a número. En esta clase se espera validar primero y convertir después."
+    "keywords": ["isdigit", "numero", "validar", "int"],
+    "title": "Validacion numerica con isdigit",
+    "content": "isdigit() permite comprobar si un texto contiene solamente digitos antes de convertirlo a numero. En esta clase se espera validar primero y convertir despues."
   },
   {
     "id": "py03-strip",
     "class_id": "python-inicial-clase-03",
     "language": "python",
-    "keywords": ["strip", "espacios", "vacío", "vacio", "input"],
+    "keywords": ["strip", "espacios", "vacio", "input"],
     "title": "Limpieza de espacios con strip",
-    "content": "strip() elimina espacios al inicio y al final de un texto. Es útil después de input() para evitar aceptar campos que parecen completos pero solo tienen espacios."
+    "content": "strip() elimina espacios al inicio y al final de un texto. Es util despues de input() para evitar aceptar campos que parecen completos pero solo tienen espacios."
   },
   {
     "id": "py03-if-elif-else",
@@ -21,22 +21,46 @@
     "language": "python",
     "keywords": ["if", "elif", "else", "condicionales", "decisiones"],
     "title": "Condicionales if, elif y else",
-    "content": "if, elif y else permiten separar caminos según una condición. En una validación básica, el programa debe distinguir casos válidos e inválidos con mensajes claros."
+    "content": "if, elif y else permiten separar caminos segun una condicion. En una validacion basica, el programa debe distinguir casos validos e invalidos con mensajes claros."
   },
   {
     "id": "py03-empty-fields",
     "class_id": "python-inicial-clase-03",
     "language": "python",
-    "keywords": ["vacío", "vacio", "campos", "validación", "validacion", "strip"],
-    "title": "Validación de campos vacíos",
-    "content": "Un campo vacío debe detectarse antes de continuar. Si se usa strip(), también se detectan entradas formadas solamente por espacios."
+    "keywords": ["vacio", "campos", "validacion", "strip"],
+    "title": "Validacion de campos vacios",
+    "content": "Un campo vacio debe detectarse antes de continuar. Si se usa strip(), tambien se detectan entradas formadas solamente por espacios."
+  },
+  {
+    "id": "sheet01-header-row",
+    "class_id": "spreadsheet-basico-clase-01",
+    "language": "csv",
+    "keywords": ["encabezados", "columnas", "tabla", "estructura"],
+    "title": "Fila de encabezados clara",
+    "content": "Una planilla inicial debe tener una primera fila con nombres de columnas claros. Eso facilita interpretar el contenido y evaluar los datos cargados."
+  },
+  {
+    "id": "sheet01-formulas",
+    "class_id": "spreadsheet-basico-clase-01",
+    "language": "csv",
+    "keywords": ["formulas", "calculos", "totales", "csv"],
+    "title": "Formulas y calculos simples",
+    "content": "En esta clase se espera que la tabla incluya al menos un calculo o formula simple para demostrar manejo basico de planillas."
+  },
+  {
+    "id": "sheet01-consistency",
+    "class_id": "spreadsheet-basico-clase-01",
+    "language": "csv",
+    "keywords": ["filas", "columnas", "consistencia", "datos"],
+    "title": "Consistencia de columnas",
+    "content": "Las filas deben mantener una estructura de columnas estable. Si una fila cambia de ancho o mezcla datos, la lectura de la planilla se vuelve confusa."
   },
   {
     "id": "web01-html-structure",
     "class_id": "web-inicial-clase-01",
     "language": "html",
     "keywords": ["head", "body", "h1", "h2", "p", "estructura"],
-    "title": "Estructura HTML mínima",
-    "content": "Una página HTML inicial debe tener head y body cerrados correctamente. El contenido visible suele organizarse con encabezados y párrafos."
+    "title": "Estructura HTML minima",
+    "content": "Una pagina HTML inicial debe tener head y body cerrados correctamente. El contenido visible suele organizarse con encabezados y parrafos."
   }
 ]

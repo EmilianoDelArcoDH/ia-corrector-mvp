@@ -1,0 +1,3 @@
+/* Runtime fallback for the browser-only playground.
+   The real Tailwind import in globals.css is a build-time directive,
+   so this file intentionally stays minimal when the page is served by FastAPI. */

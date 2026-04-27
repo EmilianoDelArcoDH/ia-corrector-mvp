@@ -1,0 +1,776 @@
+[
+  {
+    "class_id": "data-1000-c01",
+    "language": "data",
+    "title": "Introducción al Nivel",
+    "allowed_topics": [
+      "curso",
+      "nuevo",
+      "digital",
+      "tus",
+      "qué",
+      "datos",
+      "bienvenida",
+      "estrategias",
+      "herramientas",
+      "marketing",
+      "proyecto",
+      "buscador"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: curso, nuevo, digital, tus, qué."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Introducción al Nivel",
+      "¿Qué es Data Analytics"
+    ]
+  },
+  {
+    "class_id": "data-1000-c02",
+    "language": "data",
+    "title": "KPIs y OKRs",
+    "allowed_topics": [
+      "qué",
+      "métricas",
+      "kpis",
+      "okrs",
+      "definir",
+      "estrategia",
+      "medición",
+      "proyecto",
+      "data",
+      "analytics",
+      "alcance",
+      "interacciones"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: qué, métricas, kpis, okrs, definir."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "KPIs y OKRs"
+    ]
+  },
+  {
+    "class_id": "data-1000-c03",
+    "language": "data",
+    "title": "Storytelling",
+    "allowed_topics": [
+      "storytelling",
+      "qué",
+      "pieza",
+      "comunicación",
+      "efectiva",
+      "vas",
+      "hoy",
+      "historias",
+      "ejemplo",
+      "entender",
+      "florence",
+      "caso"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: storytelling, qué, pieza, comunicación, efectiva."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Storytelling",
+      "Visualización de datos"
+    ]
+  },
+  {
+    "class_id": "data-1000-c04",
+    "language": "data",
+    "title": "Hojas de Cálculo 01 - Intro",
+    "allowed_topics": [
+      "filas",
+      "columnas",
+      "cálculo",
+      "google",
+      "sheets",
+      "tablas",
+      "hojas",
+      "manipulación",
+      "datos",
+      "excel",
+      "producto",
+      "columna"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: filas, columnas, cálculo, google, sheets."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Hojas de Cálculo 01 - Intro",
+      "Manipulación de Datos"
+    ]
+  },
+  {
+    "class_id": "data-2001-c01",
+    "language": "data",
+    "title": "Gráficos Simples",
+    "allowed_topics": [
+      "actividad",
+      "datos",
+      "gráficos",
+      "google",
+      "sheets",
+      "clase",
+      "redes",
+      "sociales",
+      "cuenta",
+      "parte",
+      "practicar",
+      "data-2001"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: actividad, datos, gráficos, google, sheets."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Gráficos Simples",
+      "Gráficos Simples"
+    ]
+  },
+  {
+    "class_id": "data-2001-c02",
+    "language": "data",
+    "title": "Recuentos simples",
+    "allowed_topics": [
+      "actividad",
+      "cuestionarios",
+      "cuestionario",
+      "google",
+      "sheets",
+      "siguientes",
+      "datos",
+      "redes",
+      "sociales",
+      "indicadores",
+      "preguntas",
+      "practicar"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: actividad, cuestionarios, cuestionario, google, sheets."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Recuentos simples",
+      "Recuentos simples"
+    ]
+  },
+  {
+    "class_id": "data-2001-c03",
+    "language": "data",
+    "title": "Recuentos condicionales",
+    "allowed_topics": [
+      "archivo",
+      "datos",
+      "cuenta",
+      "recuentos",
+      "condicionales",
+      "qué",
+      "vamos",
+      "analizar",
+      "cuentas",
+      "populares",
+      "hojas",
+      "cálculo"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: archivo, datos, cuenta, recuentos, condicionales."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Recuentos condicionales",
+      "Recuentos condicionales"
+    ]
+  },
+  {
+    "class_id": "data-3001-c01",
+    "language": "data",
+    "title": "Explorando un Dashboard",
+    "allowed_topics": [
+      "qué",
+      "vas",
+      "datos",
+      "productos",
+      "fórmula",
+      "contara",
+      "dashboard",
+      "hoy",
+      "utilizando",
+      "hojas",
+      "indicador",
+      "308"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: qué, vas, datos, productos, fórmula."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Explorando un Dashboard"
+    ]
+  },
+  {
+    "class_id": "data-3001-c02",
+    "language": "data",
+    "title": "Tablas Dinámicas 01 Filas, Columnas y Valores",
+    "allowed_topics": [
+      "productos",
+      "datos",
+      "fórmula",
+      "contara",
+      "tablas",
+      "dinámicas",
+      "filas",
+      "columnas",
+      "qué",
+      "único",
+      "funciones",
+      "tabla"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: productos, datos, fórmula, contara, tablas."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Tablas Dinámicas 01 Filas, Columnas y Valores"
+    ]
+  },
+  {
+    "class_id": "data-3001-c03",
+    "language": "data",
+    "title": "Tablas Dinámicas 02 Tablas jerarquizadas y Filtros Internos",
+    "allowed_topics": [
+      "tablas",
+      "dinámicas",
+      "qué",
+      "tabla",
+      "dinámica",
+      "filtros",
+      "vas",
+      "hoy",
+      "repasar",
+      "crear",
+      "datos",
+      "filas"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: tablas, dinámicas, qué, tabla, dinámica."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Tablas Dinámicas 02 Tablas jerarquizadas y Filtros Internos"
+    ]
+  },
+  {
+    "class_id": "data-3001-c04",
+    "language": "data",
+    "title": "Tablas Dinámicas 03 Gráficos",
+    "allowed_topics": [
+      "gráficos",
+      "qué",
+      "tabla",
+      "tablas",
+      "dinámicas",
+      "cómo",
+      "dinámica",
+      "vas",
+      "hoy",
+      "hasta",
+      "gráfico",
+      "ejemplo"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: gráficos, qué, tabla, tablas, dinámicas."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Tablas Dinámicas 03 Gráficos"
+    ]
+  },
+  {
+    "class_id": "data-4000-c01",
+    "language": "data",
+    "title": "Campos condicionales y sus limitaciones",
+    "allowed_topics": [
+      "uso",
+      "fórmula",
+      "condicionales",
+      "qué",
+      "vas",
+      "hoy",
+      "imagina",
+      "son",
+      "cuenta",
+      "opciones",
+      "resultado",
+      "tomando"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: uso, fórmula, condicionales, qué, vas."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Campos condicionales y sus limitaciones"
+    ]
+  },
+  {
+    "class_id": "data-4000-c02",
+    "language": "data",
+    "title": "Aproximación a los Modelos de Datos",
+    "allowed_topics": [
+      "tablas",
+      "datos",
+      "diagramas",
+      "base",
+      "productos",
+      "qué",
+      "vas",
+      "hoy",
+      "crear",
+      "representar",
+      "tabla",
+      "cliente"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: tablas, datos, diagramas, base, productos."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Aproximación a los Modelos de Datos"
+    ]
+  },
+  {
+    "class_id": "data-4000-c03",
+    "language": "data",
+    "title": "Combinación de Tablas",
+    "allowed_topics": [
+      "tablas",
+      "datos",
+      "productos",
+      "hoy",
+      "pedidos",
+      "clientes",
+      "tabla",
+      "qué",
+      "vas",
+      "aprender",
+      "buscarv",
+      "diagrama"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: tablas, datos, productos, hoy, pedidos."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Combinación de Tablas"
+    ]
+  },
+  {
+    "class_id": "data-5000-c01",
+    "language": "data",
+    "title": "Frecuencias e histogramas",
+    "allowed_topics": [
+      "dataset",
+      "datos",
+      "actividad",
+      "miembros",
+      "comunidad",
+      "episodios",
+      "cantidad",
+      "realizar",
+      "objetivo",
+      "frecuencias",
+      "series",
+      "películas"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: dataset, datos, actividad, miembros, comunidad."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Freciencia e histogramas",
+      "Frecuencias e histogramas"
+    ]
+  },
+  {
+    "class_id": "data-5000-c02",
+    "language": "data",
+    "title": "Cuantiles y boxplots",
+    "allowed_topics": [
+      "actividad",
+      "dataset",
+      "datos",
+      "ganados",
+      "indicadores",
+      "125",
+      "jugadores",
+      "tenis",
+      "puntos",
+      "estos",
+      "valores",
+      "crear"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: actividad, dataset, datos, ganados, indicadores."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Cuantiles, percentiles y boxplot",
+      "Cuantiles y boxplots"
+    ]
+  },
+  {
+    "class_id": "data-5000-c03",
+    "language": "data",
+    "title": "Correlación y dispersión",
+    "allowed_topics": [
+      "actividad",
+      "datos",
+      "empleados",
+      "dispersión",
+      "dataset",
+      "nextech",
+      "antigüedad",
+      "crear",
+      "gráfico",
+      "respecto",
+      "ecotech",
+      "observen"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: actividad, datos, empleados, dispersión, dataset."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Correlación y Dispersión",
+      "Correlación y dispersión"
+    ]
+  },
+  {
+    "class_id": "data-5000-c04",
+    "language": "data",
+    "title": "Causalidad vs. Casualidad",
+    "allowed_topics": [
+      "perros",
+      "causalidad",
+      "casualidad",
+      "comprender",
+      "concepto",
+      "lluvia",
+      "pueblo",
+      "qué",
+      "vas",
+      "hoy",
+      "relación",
+      "causa"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: perros, causalidad, casualidad, comprender, concepto."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Causalidad vs. Casualidad",
+      "Ejemplo Proyecto final",
+      "Proyecto integrador Estadística"
+    ]
+  },
+  {
+    "class_id": "data-6000-c01",
+    "language": "data",
+    "title": "Fuentes de datos",
+    "allowed_topics": [
+      "datos",
+      "fuentes",
+      "dashboard",
+      "dashboards",
+      "qué",
+      "vas",
+      "hoy",
+      "tiempo",
+      "real",
+      "google",
+      "encuesta",
+      "cómo"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: datos, fuentes, dashboard, dashboards, qué."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Fuentes de datos",
+      "Introducción a Looker Studio"
+    ]
+  },
+  {
+    "class_id": "data-6000-c02",
+    "language": "data",
+    "title": "Gráficos simples",
+    "allowed_topics": [
+      "datos",
+      "bases",
+      "looker",
+      "studio",
+      "vas",
+      "crear",
+      "primer",
+      "dashboard",
+      "qué",
+      "hoy",
+      "gráfico",
+      "cómo"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: datos, bases, looker, studio, vas."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Mi primer dashboard",
+      "Actividad Mi primer Dashboard",
+      "Gráficos simples"
+    ]
+  },
+  {
+    "class_id": "data-6000-c03",
+    "language": "data",
+    "title": "Actividad Gráficos Simples",
+    "allowed_topics": [
+      "nueva",
+      "hoja",
+      "actividad",
+      "clase",
+      "página",
+      "crear",
+      "gráficos",
+      "tendrás",
+      "dashboard",
+      "anterior",
+      "enlace",
+      "público"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: nueva, hoja, actividad, clase, página."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Gráficos Simples"
+    ]
+  },
+  {
+    "class_id": "data-6000-c04",
+    "language": "data",
+    "title": "Campos calculados",
+    "allowed_topics": [
+      "nueva",
+      "hoja",
+      "clase",
+      "crear",
+      "página",
+      "opción",
+      "actividad",
+      "campos",
+      "calculados",
+      "tendrás",
+      "enlace",
+      "vez"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: nueva, hoja, clase, crear, página."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Campos calculados",
+      "Campos calculados"
+    ]
+  },
+  {
+    "class_id": "data-6100-c01",
+    "language": "data",
+    "title": "Combinación de datos",
+    "allowed_topics": [
+      "datos",
+      "dataset",
+      "nuevo",
+      "actividad",
+      "combinación",
+      "notebooks",
+      "trabajar",
+      "combinaciones",
+      "tablas",
+      "dashboard",
+      "enlace",
+      "gráficos"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: datos, dataset, nuevo, actividad, combinación."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Combinación de Datos",
+      "Combinación de datos"
+    ]
+  },
+  {
+    "class_id": "data-6100-c02",
+    "language": "data",
+    "title": "Apilamiento y Dimensiones",
+    "allowed_topics": [
+      "nueva",
+      "hoja",
+      "página",
+      "opción",
+      "datos",
+      "preguntas",
+      "clase",
+      "agregar",
+      "informe",
+      "barra",
+      "notebooks",
+      "según"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: nueva, hoja, página, opción, datos."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Apilamiento y Dimensiones",
+      "Apilamiento y Dimensiones"
+    ]
+  },
+  {
+    "class_id": "data-6100-c03",
+    "language": "data",
+    "title": "Métricas Opcionales y Filtros",
+    "allowed_topics": [
+      "nueva",
+      "agregar",
+      "hoja",
+      "página",
+      "opción",
+      "actividad",
+      "métricas",
+      "opcionales",
+      "filtros",
+      "dashboard",
+      "cómo",
+      "podemos"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: nueva, agregar, hoja, página, opción."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Actividad Métricas Opcionales y Filtros",
+      "Métricas Opcionales y Filtros"
+    ]
+  },
+  {
+    "class_id": "data-6100-c04",
+    "language": "data",
+    "title": "Proyecto integrador Reportes avanzados",
+    "allowed_topics": [
+      "data",
+      "analytics",
+      "proyecto",
+      "dataset",
+      "grupos",
+      "cómo",
+      "qué",
+      "journey",
+      "integrador",
+      "reportes",
+      "datos",
+      "paso"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: data, analytics, proyecto, dataset, grupos."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Proyecto integrador Reportes avanzados"
+    ]
+  },
+  {
+    "class_id": "data-9901-c01",
+    "language": "data",
+    "title": "Datatón",
+    "allowed_topics": [
+      "data",
+      "analytics",
+      "desafío",
+      "dataset",
+      "grupos",
+      "qué",
+      "journey",
+      "datatón",
+      "hora",
+      "poner",
+      "datos",
+      "paso"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: data, analytics, desafío, dataset, grupos."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Datatón"
+    ]
+  },
+  {
+    "class_id": "data-clases-copia-de-dsd-st2-data-in",
+    "language": "data",
+    "title": "Copia de DSD ST2 DATA - Introducción DATA 02",
+    "allowed_topics": [
+      "data",
+      "qué",
+      "datos",
+      "productos",
+      "fórmula",
+      "contara",
+      "parte",
+      "digital",
+      "vamos",
+      "hoy",
+      "columna",
+      "cantidad"
+    ],
+    "blocked_topics": [],
+    "learning_objectives": [
+      "Reconocer y aplicar conceptos vinculados con: data, qué, datos, productos, fórmula."
+    ],
+    "common_errors": [],
+    "source_titles": [
+      "Copia de DSD ST2 DATA - Introducción DATA 02"
+    ]
+  }
+]

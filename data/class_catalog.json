@@ -6,7 +6,7 @@
       "python-inicial-clase-03-guia"
     ],
     "resource_titles": [
-      "Guía de condicionales y validaciones básicas"
+      "Guia de condicionales y validaciones basicas"
     ],
     "resource_types": [
       "lesson_notes"
@@ -14,12 +14,10 @@
     "keywords": [
       "isdigit",
       "numero",
-      "número",
       "validar",
       "int",
       "strip",
       "espacios",
-      "vacío",
       "vacio",
       "input",
       "if",
@@ -28,8 +26,30 @@
       "condicionales",
       "decisiones",
       "campos",
-      "validación",
       "validacion"
+    ]
+  },
+  {
+    "class_id": "spreadsheet-basico-clase-01",
+    "language": "csv",
+    "resource_ids": [
+      "spreadsheet-basico-clase-01-guia"
+    ],
+    "resource_titles": [
+      "Guia de tablas iniciales y formulas simples"
+    ],
+    "resource_types": [
+      "lesson_notes"
+    ],
+    "keywords": [
+      "encabezados",
+      "filas",
+      "columnas",
+      "formulas",
+      "totales",
+      "tabla",
+      "csv",
+      "estructura"
     ]
   },
   {
@@ -39,7 +59,7 @@
       "web-inicial-clase-01-guia"
     ],
     "resource_titles": [
-      "Guía de estructura HTML básica"
+      "Guia de estructura HTML basica"
     ],
     "resource_types": [
       "lesson_notes"

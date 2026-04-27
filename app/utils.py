@@ -4,8 +4,6 @@ from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
-import httpx
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -61,6 +59,11 @@ def extract_submission_text(item: Any) -> str:
 
 
 def fetch_url_text(url: str) -> str:
+    try:
+        import httpx
+    except ImportError:
+        return ""
+
     for candidate_url in _url_candidates(url):
         try:
             with httpx.Client(timeout=15.0, follow_redirects=True) as client:

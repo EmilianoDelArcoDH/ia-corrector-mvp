@@ -2,7 +2,7 @@
   {
     "class_id": "python-inicial-clase-03",
     "language": "python",
-    "title": "Condicionales y validaciones básicas",
+    "title": "Condicionales y validaciones basicas",
     "allowed_topics": [
       "input",
       "print",
@@ -22,22 +22,22 @@
     "learning_objectives": [
       "Solicitar datos al usuario con input().",
       "Limpiar espacios innecesarios con strip().",
-      "Validar que un campo no esté vacío antes de usarlo.",
-      "Validar números con isdigit() antes de convertirlos.",
+      "Validar que un campo no este vacio antes de usarlo.",
+      "Validar numeros con isdigit() antes de convertirlos.",
       "Usar if, elif y else para tomar decisiones simples."
     ],
     "common_errors": [
-      "Convertir con int() antes de comprobar que el texto sea numérico.",
-      "No contemplar entradas vacías.",
+      "Convertir con int() antes de comprobar que el texto sea numerico.",
+      "No contemplar entradas vacias.",
       "Olvidar strip() y aceptar respuestas con solo espacios.",
       "Usar condicionales sin else para el caso alternativo.",
-      "Resolver con temas todavía no trabajados en la clase."
+      "Resolver con temas todavia no trabajados en la clase."
     ]
   },
   {
     "class_id": "web-inicial-clase-01",
     "language": "html",
-    "title": "Estructura básica de una página web",
+    "title": "Estructura basica de una pagina web",
     "allowed_topics": [
       "html",
       "head",
@@ -56,15 +56,45 @@
     ],
     "learning_objectives": [
       "Crear una estructura HTML con head y body.",
-      "Incluir títulos y párrafos visibles.",
+      "Incluir titulos y parrafos visibles.",
       "Conectar estilos CSS externos cuando corresponda.",
       "Separar comportamiento JavaScript en un archivo propio."
     ],
     "common_errors": [
       "No cerrar etiquetas principales.",
       "Ubicar contenido visible fuera del body.",
-      "No incluir ningún encabezado.",
-      "Mezclar estilos sin un archivo CSS cuando la consigna pide separación."
+      "No incluir ningun encabezado.",
+      "Mezclar estilos sin un archivo CSS cuando la consigna pide separacion."
+    ]
+  },
+  {
+    "class_id": "spreadsheet-basico-clase-01",
+    "language": "csv",
+    "title": "Planillas iniciales con encabezados y formulas",
+    "allowed_topics": [
+      "encabezados",
+      "filas",
+      "columnas",
+      "formulas",
+      "totales",
+      "estructura"
+    ],
+    "blocked_topics": [
+      "macros",
+      "sql",
+      "scripts"
+    ],
+    "learning_objectives": [
+      "Organizar datos tabulares con una fila de encabezados clara.",
+      "Mantener una estructura de columnas consistente.",
+      "Incluir al menos un calculo o formula simple.",
+      "Presentar datos completos para poder analizarlos."
+    ],
+    "common_errors": [
+      "Cargar filas con distinta cantidad de columnas.",
+      "No incluir encabezados reconocibles.",
+      "Entregar una tabla sin formulas ni calculos.",
+      "Dejar datos vacios o poco interpretables."
     ]
   }
 ]

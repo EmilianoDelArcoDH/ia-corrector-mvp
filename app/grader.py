@@ -15,6 +15,8 @@ def grade_submission(language: str, files: list[SubmittedFile]) -> dict[str, Any
         return grade_web(files)
     if normalized_language in {"sheet", "spreadsheet", "csv"}:
         return grade_sheet(files)
+    if normalized_language == "data":
+        return grade_data(files)
 
     return {
         "passed": False,
@@ -203,6 +205,125 @@ def grade_sheet(files: list[SubmittedFile]) -> dict[str, Any]:
     }
 
 
+def grade_data(files: list[SubmittedFile]) -> dict[str, Any]:
+    names = [file.name.lower() for file in files]
+    urls = [file.url.lower() for file in files if file.url]
+    all_text = "\n\n".join(extract_submission_text(file) for file in files if extract_submission_text(file).strip())
+    compact_text = all_text.lower()
+
+    if _looks_like_tabular_delivery(files, names, urls, compact_text):
+        sheet_result = grade_sheet(files)
+        return _append_data_guidance(
+            sheet_result,
+            all_text=compact_text,
+            names=names,
+            urls=urls,
+        )
+
+    return grade_data_artifact(files, all_text=compact_text, names=names, urls=urls)
+
+
+def grade_data_artifact(
+    files: list[SubmittedFile],
+    *,
+    all_text: str,
+    names: list[str],
+    urls: list[str],
+) -> dict[str, Any]:
+    successes: list[str] = []
+    errors: list[str] = []
+    checks: list[bool] = []
+
+    has_delivery = any(extract_submission_text(file).strip() or file.url for file in files)
+    checks.append(has_delivery)
+    _record(
+        has_delivery,
+        "La entrega incluye contenido verificable.",
+        "No se encontro contenido suficiente para revisar la entrega.",
+        successes,
+        errors,
+    )
+
+    has_public_link = any(url.startswith("http") for url in urls)
+    checks.append(has_public_link)
+    _record(
+        has_public_link,
+        "Incluye un link publico o un recurso accesible.",
+        "No se detecto un link publico para revisar el recurso.",
+        successes,
+        errors,
+    )
+
+    has_metrics = any(keyword in all_text for keyword in {"metrica", "metricas", "kpi", "okr", "indicador", "score"})
+    checks.append(has_metrics)
+    _record(
+        has_metrics,
+        "Se mencionan metricas o indicadores relevantes.",
+        "No se detectan metricas o indicadores claros en la entrega.",
+        successes,
+        errors,
+    )
+
+    has_dimensions = any(
+        keyword in all_text for keyword in {"dimension", "dimensiones", "categoria", "segmento", "filtro", "drill"}
+    )
+    checks.append(has_dimensions)
+    _record(
+        has_dimensions,
+        "La entrega contempla dimensiones, categorias o filtros de analisis.",
+        "No se detectan dimensiones, categorias ni filtros para analizar los datos.",
+        successes,
+        errors,
+    )
+
+    has_visualization = any(
+        keyword in all_text for keyword in {"grafico", "dashboard", "tablero", "looker", "studio", "reporte", "chart"}
+    ) or any(name.endswith((".html", ".pdf", ".pptx")) for name in names)
+    checks.append(has_visualization)
+    _record(
+        has_visualization,
+        "Se detecta una visualizacion, dashboard o reporte asociado.",
+        "No se detecta evidencia de visualizaciones o dashboards en la entrega.",
+        successes,
+        errors,
+    )
+
+    score = round(sum(checks) / len(checks) * 100)
+    return {
+        "passed": score >= 60,
+        "score": score,
+        "successes": successes,
+        "errors": errors,
+    }
+
+
+def _append_data_guidance(
+    result: dict[str, Any],
+    *,
+    all_text: str,
+    names: list[str],
+    urls: list[str],
+) -> dict[str, Any]:
+    successes = list(result["successes"])
+    errors = list(result["errors"])
+
+    has_analysis_signal = any(
+        keyword in all_text for keyword in {"grafico", "dashboard", "metrica", "indicador", "filtro", "dimension"}
+    ) or any("looker" in url or "datastudio" in url for url in urls)
+
+    if has_analysis_signal:
+        successes.append("La entrega aporta senales de analisis o visualizacion de datos.")
+    else:
+        errors.append("Seria ideal complementar la planilla con algun indicador, grafico o contexto de analisis.")
+
+    return {
+        "passed": result["passed"],
+        "score": result["score"],
+        "successes": successes,
+        "errors": errors,
+    }
+
+
 def _record(passed: bool, success: str, error: str, successes: list[str], errors: list[str]) -> None:
     if passed:
         successes.append(success)
@@ -263,6 +384,20 @@ def _detect_delimiter(sample_lines: list[str]) -> str:
     scored = [(joined.count(candidate), candidate) for candidate in candidates]
     scored.sort(reverse=True)
     return scored[0][1] if scored and scored[0][0] > 0 else ","
+
+
+def _looks_like_tabular_delivery(
+    files: list[SubmittedFile],
+    names: list[str],
+    urls: list[str],
+    all_text: str,
+) -> bool:
+    if any(name.endswith((".csv", ".xlsx", ".xls", ".xlsm")) for name in names):
+        return True
+    if any(url.endswith(".csv") or "spreadsheets" in url for url in urls):
+        return True
+    row_count = len(_parse_table_rows(all_text))
+    return row_count >= 2
 
 
 def _has_consistent_columns(rows: list[list[str]]) -> bool:

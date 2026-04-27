@@ -1,14 +1,21 @@
 import csv
 from io import BytesIO, StringIO
+from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.responses import FileResponse, Response
+from fastapi.staticfiles import StaticFiles
 
 from app.grader import grade_submission
 from app.llm import generate_feedback
-from app.rag import get_class_content_summary, get_class_metadata, search_chunks
+from app.rag import get_class_content_summary, get_class_metadata, list_available_classes, search_chunks
 from app.schemas import FeedbackRequest, FeedbackResponse, HealthResponse, SubmissionKind, SubmittedFile
 from app.utils import combined_submission_content
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+NODE_MODULES_DIR = BASE_DIR / "node_modules"
 
 app = FastAPI(
     title="ia-corrector-mvp",
@@ -16,10 +23,42 @@ app = FastAPI(
     version="0.1.0",
 )
 
+@app.get("/", include_in_schema=False)
+def playground() -> FileResponse:
+    return FileResponse(FRONTEND_DIR / "index.html")
+
+
+@app.get("/assets/tailwindcss", include_in_schema=False)
+def frontend_tailwindcss() -> Response:
+    content = (FRONTEND_DIR / "tailwindcss").read_text(encoding="utf-8")
+    return Response(content=content, media_type="text/css")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon() -> Response:
+    return Response(status_code=204)
+
+
+@app.get("/assets/{asset_path:path}", include_in_schema=False)
+def frontend_asset(asset_path: str) -> FileResponse:
+    asset = (FRONTEND_DIR / asset_path).resolve()
+    if not asset.is_file() or FRONTEND_DIR.resolve() not in asset.parents:
+        raise HTTPException(status_code=404, detail="Not Found")
+    return FileResponse(asset)
+
+
+if NODE_MODULES_DIR.exists():
+    app.mount("/node_modules", StaticFiles(directory=NODE_MODULES_DIR), name="node_modules")
+
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     return HealthResponse(ok=True)
+
+
+@app.get("/classes")
+def classes() -> list[dict[str, object]]:
+    return list_available_classes()
 
 
 @app.post("/feedback", response_model=FeedbackResponse)
