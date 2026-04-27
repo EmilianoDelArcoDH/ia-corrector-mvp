@@ -141,12 +141,17 @@ def grade_sheet(files: list[SubmittedFile]) -> dict[str, Any]:
     sheet_text = "\n\n".join(
         extracted for extracted in (extract_submission_text(file) for file in files) if extracted.strip()
     )
-    rows = _parse_table_rows(sheet_text)
+    sheet_sections = _parse_sheet_sections(sheet_text)
+    analyzable_sections = [(name, rows) for name, rows in sheet_sections if len(rows) >= 2]
     successes: list[str] = []
     errors: list[str] = []
     checks: list[bool] = []
 
-    has_rows = len(rows) >= 2
+    if len(sheet_sections) > 1:
+        reviewed_names = ", ".join(name for name, _ in sheet_sections)
+        successes.append(f"Se revisaron {len(sheet_sections)} hojas: {reviewed_names}.")
+
+    has_rows = bool(analyzable_sections)
     checks.append(has_rows)
     _record(
         has_rows,
@@ -156,17 +161,17 @@ def grade_sheet(files: list[SubmittedFile]) -> dict[str, Any]:
         errors,
     )
 
-    has_consistent_columns = _has_consistent_columns(rows)
+    has_consistent_columns = any(_has_consistent_columns(rows) for _, rows in analyzable_sections)
     checks.append(has_consistent_columns)
     _record(
         has_consistent_columns,
-        "Las filas mantienen una estructura de columnas razonable.",
+        "Las hojas con datos mantienen una estructura de columnas razonable.",
         "La estructura de columnas se ve inconsistente o poco clara.",
         successes,
         errors,
     )
 
-    has_header = _has_header_row(rows)
+    has_header = any(_has_header_row(rows) for _, rows in analyzable_sections)
     checks.append(has_header)
     _record(
         has_header,
@@ -176,17 +181,24 @@ def grade_sheet(files: list[SubmittedFile]) -> dict[str, Any]:
         errors,
     )
 
-    has_formula = any(cell.lstrip().startswith("=") for row in rows for cell in row)
+    is_google_sheet_export = "# Fuente: Google Sheets exportado" in sheet_text
+    has_activity_sheets = any("actividad" in name.lower() for name, _ in sheet_sections)
+    has_formula = _has_formula(sheet_text, sheet_sections)
     checks.append(has_formula)
     _record(
         has_formula,
         "Incluye al menos una formula o calculo.",
-        "No se detecto ninguna formula en la planilla.",
+        (
+            "No se detectaron respuestas o calculos completados en las hojas de actividad."
+            if is_google_sheet_export and has_activity_sheets
+            else "No se detecto ninguna formula en la planilla."
+        ),
         successes,
         errors,
     )
+    successes.extend(_formula_successes(sheet_text, sheet_sections))
 
-    has_nonempty_data = any(cell.strip() for row in rows[1:] for cell in row)
+    has_nonempty_data = any(cell.strip() for _, rows in analyzable_sections for row in rows[1:] for cell in row)
     checks.append(has_nonempty_data)
     _record(
         has_nonempty_data,
@@ -197,8 +209,10 @@ def grade_sheet(files: list[SubmittedFile]) -> dict[str, Any]:
     )
 
     score = round(sum(checks) / len(checks) * 100)
+    if not has_formula:
+        score = min(score, 60)
     return {
-        "passed": score >= 70,
+        "passed": score >= 70 and has_formula,
         "score": score,
         "successes": successes,
         "errors": errors,
@@ -311,9 +325,9 @@ def _append_data_guidance(
         keyword in all_text for keyword in {"grafico", "dashboard", "metrica", "indicador", "filtro", "dimension"}
     ) or any("looker" in url or "datastudio" in url for url in urls)
 
-    if has_analysis_signal:
+    if result["passed"] and has_analysis_signal:
         successes.append("La entrega aporta senales de analisis o visualizacion de datos.")
-    else:
+    elif result["passed"]:
         errors.append("Seria ideal complementar la planilla con algun indicador, grafico o contexto de analisis.")
 
     return {
@@ -376,6 +390,173 @@ def _parse_table_rows(text: str) -> list[list[str]]:
         if parts:
             fallback_rows.append(parts)
     return fallback_rows
+
+
+def _parse_sheet_sections(text: str) -> list[tuple[str, list[list[str]]]]:
+    sections: list[tuple[str, list[str]]] = []
+    current_name: str | None = None
+    current_lines: list[str] = []
+    saw_sheet_header = False
+
+    for line in text.splitlines():
+        sheet_match = re.match(r"^#\s*Hoja:\s*(.+)$", line.strip(), flags=re.IGNORECASE)
+        if sheet_match:
+            saw_sheet_header = True
+            if current_name and current_lines:
+                sections.append((current_name, current_lines))
+            current_name = sheet_match.group(1).strip() or f"Hoja {len(sections) + 1}"
+            current_lines = []
+            continue
+        if line.strip().startswith("# Fuente:"):
+            continue
+        if not saw_sheet_header and line.strip().startswith("#"):
+            continue
+        current_lines.append(line)
+
+    if current_name and current_lines:
+        sections.append((current_name, current_lines))
+    elif current_lines and not saw_sheet_header:
+        sections.append(("Entrega", current_lines))
+
+    parsed_sections: list[tuple[str, list[list[str]]]] = []
+    for name, lines in sections:
+        rows = _parse_table_rows("\n".join(lines))
+        if rows:
+            parsed_sections.append((name, rows))
+
+    return parsed_sections or [("Entrega", _parse_table_rows(text))]
+
+
+def _has_formula(text: str, sheet_sections: list[tuple[str, list[list[str]]]]) -> bool:
+    formula_pattern = re.compile(r"(^|[\s,;\t])=[A-ZÁÉÍÓÚÑ_]+|\b=[A-Z]+\d+|=[^,\n;]*[+\-*/^()]", re.IGNORECASE)
+    if formula_pattern.search(text):
+        return True
+    if "# Fuente: Google Sheets exportado" in text and _has_google_sheet_calculated_results(sheet_sections):
+        return True
+    return any(cell.lstrip().startswith("=") for _, rows in sheet_sections for row in rows for cell in row)
+
+
+def _has_google_sheet_calculated_results(sheet_sections: list[tuple[str, list[list[str]]]]) -> bool:
+    for sheet_name, rows in sheet_sections:
+        if "actividad" not in sheet_name.lower():
+            continue
+        numeric_cells = 0
+        for row in rows[1:]:
+            for cell in row:
+                if _looks_numeric(cell.replace("$", "").replace("%", "").replace(".", "").strip()):
+                    numeric_cells += 1
+        if numeric_cells >= 3:
+            return True
+    return False
+
+
+def _formula_successes(text: str, sheet_sections: list[tuple[str, list[list[str]]]]) -> list[str]:
+    formulas = _extract_formulas(sheet_sections)
+    if formulas:
+        summaries = [_describe_formula(formula) for formula in formulas[:4]]
+        summaries = [summary for summary in summaries if summary]
+        if summaries:
+            return [f"Formula detectada: {summary}" for summary in summaries]
+
+    if "# Fuente: Google Sheets exportado" in text:
+        inferred = _infer_google_sheet_calculation_areas(sheet_sections)
+        if inferred:
+            return [
+                "Se detectan valores calculados en hojas de actividad: "
+                + ", ".join(inferred[:4])
+                + ". Google Sheets exporta el resultado calculado, no la formula original."
+            ]
+
+    return []
+
+
+def _extract_formulas(sheet_sections: list[tuple[str, list[list[str]]]]) -> list[str]:
+    formulas: list[str] = []
+    for sheet_name, rows in sheet_sections:
+        if sheet_name and "actividad" not in sheet_name.lower() and len(sheet_sections) > 1:
+            continue
+        for row in rows:
+            for cell in row:
+                value = cell.strip()
+                if value.startswith("=") and _is_user_facing_formula(value):
+                    formulas.append(value)
+    return list(dict.fromkeys(formulas))
+
+
+def _describe_formula(formula: str) -> str | None:
+    if not _is_user_facing_formula(formula):
+        return None
+
+    function_match = re.match(r"=([A-ZÁÉÍÓÚÑ.]+)\s*\(", formula, flags=re.IGNORECASE)
+    if function_match:
+        function_name = _display_formula_name(function_match.group(1).upper())
+        purpose = _formula_purpose(function_name)
+        return f"uso de {function_name}(); {purpose}"
+    if any(operator in formula for operator in ("*", "/", "+", "-")):
+        return "operacion entre celdas; esta operacion ayuda a calcular resultados derivados entre columnas."
+    return formula
+
+
+def _is_user_facing_formula(formula: str) -> bool:
+    lowered = formula.lower()
+    technical_markers = ["__xludf", "dummyfunction", "_xlfn.", "_xlws.", "iferror(__xludf"]
+    if any(marker in lowered for marker in technical_markers):
+        return False
+    return len(formula) <= 160
+
+
+def _display_formula_name(function_name: str) -> str:
+    aliases = {
+        "COUNTA": "CONTARA",
+        "COUNT": "CONTAR",
+        "SUM": "SUMA",
+        "AVERAGE": "PROMEDIO",
+        "COUNTIF": "CONTAR.SI",
+        "SUMIF": "SUMAR.SI",
+        "AVERAGEIF": "PROMEDIO.SI",
+    }
+    return aliases.get(function_name, function_name)
+
+
+def _formula_purpose(function_name: str) -> str:
+    purposes = {
+        "CONTARA": "sirve para contar celdas con datos y verificar volumen de registros",
+        "COUNT": "sirve para contar valores numericos",
+        "COUNTA": "sirve para contar celdas con datos y verificar volumen de registros",
+        "SUMA": "sirve para obtener totales",
+        "SUM": "sirve para obtener totales",
+        "PROMEDIO": "sirve para resumir un conjunto de valores con una medida central",
+        "AVERAGE": "sirve para resumir un conjunto de valores con una medida central",
+        "MAX": "sirve para identificar el valor mas alto",
+        "MIN": "sirve para identificar el valor mas bajo",
+        "CONTAR.SI": "sirve para contar registros que cumplen una condicion",
+        "COUNTIF": "sirve para contar registros que cumplen una condicion",
+        "SUMAR.SI": "sirve para sumar valores que cumplen una condicion",
+        "SUMIF": "sirve para sumar valores que cumplen una condicion",
+        "PROMEDIO.SI": "sirve para promediar valores que cumplen una condicion",
+        "AVERAGEIF": "sirve para promediar valores que cumplen una condicion",
+    }
+    return purposes.get(function_name, "ayuda a resolver el calculo pedido en la actividad")
+
+
+def _infer_google_sheet_calculation_areas(sheet_sections: list[tuple[str, list[list[str]]]]) -> list[str]:
+    areas: list[str] = []
+    for sheet_name, rows in sheet_sections:
+        if "actividad" not in sheet_name.lower():
+            continue
+        labels: list[str] = []
+        for row in rows:
+            row_label = next((cell.strip() for cell in row if cell.strip() and not _looks_numeric(cell.strip())), "")
+            numeric_count = sum(
+                1
+                for cell in row
+                if _looks_numeric(cell.replace("$", "").replace("%", "").replace(".", "").strip())
+            )
+            if row_label and numeric_count >= 1:
+                labels.append(row_label)
+        if labels:
+            areas.append(f"{sheet_name} ({', '.join(labels[:3])})")
+    return areas
 
 
 def _detect_delimiter(sample_lines: list[str]) -> str:

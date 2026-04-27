@@ -2,9 +2,15 @@ const state = {
   classes: [],
   activeMode: "structured",
   entryCount: 0,
+  evaluationTimeline: null,
+  evaluationProgressTween: null,
 };
 
 const elements = {
+  evaluationOverlay: document.getElementById("evaluationOverlay"),
+  evaluationProgress: document.getElementById("evaluationProgress"),
+  evaluationTitle: document.getElementById("evaluationTitle"),
+  evaluationStep: document.getElementById("evaluationStep"),
   form: document.getElementById("playgroundForm"),
   classSelect: document.getElementById("classSelect"),
   modeSelect: document.getElementById("modeSelect"),
@@ -32,6 +38,7 @@ const elements = {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+  animateInitialSurface();
   bindEvents();
   setSubmissionMode("structured");
   await Promise.all([loadHealth(), loadClasses()]);
@@ -52,6 +59,18 @@ function bindEvents() {
   document.querySelectorAll("[data-preset]").forEach((button) => {
     button.addEventListener("click", () => applyPreset(button.dataset.preset));
   });
+}
+
+function animateInitialSurface() {
+  if (!window.gsap) {
+    return;
+  }
+
+  gsap.fromTo(
+    [".playground-hero", ".playground-form", ".sidebar-panel"],
+    { y: 14, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.55, stagger: 0.06, ease: "power3.out" },
+  );
 }
 
 async function loadHealth() {
@@ -278,6 +297,7 @@ async function handleSubmit(event) {
   elements.submitButton.disabled = true;
   elements.submitButton.textContent = "Corrigiendo...";
   showState("Consultando la API y esperando feedback...");
+  startEvaluationAnimation();
 
   try {
     const payload =
@@ -288,6 +308,7 @@ async function handleSubmit(event) {
   } catch (error) {
     showState(error.message || "No se pudo completar la correccion.");
   } finally {
+    stopEvaluationAnimation();
     elements.submitButton.disabled = false;
     elements.submitButton.textContent = "Enviar a correccion";
   }
@@ -362,11 +383,12 @@ function renderResponse(payload) {
   elements.scoreValue.textContent = String(payload.score ?? 0);
   elements.passValue.textContent = payload.passed ? "Aprobado" : "Revisar";
   elements.successList.innerHTML = renderList(payload.successes, "No se detectaron logros todavia.");
-  elements.errorList.innerHTML = renderList(payload.errors, "No aparecieron observaciones.");
+  elements.errorList.innerHTML = renderList(payload.errors, "Sin observaciones objetivas.");
   elements.contextList.innerHTML = (payload.context_used || [])
     .map((item) => `<span class="context-chip">${escapeHtml(item)}</span>`)
     .join("");
-  elements.feedbackText.innerHTML = formatFeedback(payload.feedback || "Sin feedback.");
+  elements.feedbackText.innerHTML = renderFeedbackCard(payload);
+  animateResponse();
 }
 
 function hideResponse() {
@@ -382,6 +404,98 @@ function showState(message) {
   elements.responseState.textContent = message;
 }
 
+function startEvaluationAnimation() {
+  const steps = [
+    "Leyendo entrega y recursos de clase.",
+    "Comparando contra criterios objetivos.",
+    "Preparando feedback pedagogico.",
+  ];
+  elements.evaluationOverlay.classList.remove("is-hidden");
+  elements.evaluationProgress.textContent = "0%";
+  elements.evaluationTitle.textContent = "Analizando entrega";
+  elements.evaluationStep.textContent = steps[0];
+
+  if (!window.gsap) {
+    elements.evaluationProgress.textContent = "...";
+    return;
+  }
+
+  const progress = { value: 0 };
+  state.evaluationTimeline?.kill();
+  state.evaluationProgressTween?.kill();
+
+  state.evaluationProgressTween = gsap.to(progress, {
+    value: 92,
+    duration: 9,
+    ease: "power2.out",
+    onUpdate: () => {
+      elements.evaluationProgress.textContent = `${Math.round(progress.value)}%`;
+    },
+  });
+
+  gsap.fromTo(elements.evaluationOverlay, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out" });
+  gsap.fromTo(".evaluation-panel", { y: 14, scale: 0.98 }, { y: 0, scale: 1, duration: 0.42, ease: "power3.out" });
+
+  state.evaluationTimeline = gsap
+    .timeline({ repeat: -1 })
+    .to(".evaluation-orbit", { rotate: 360, duration: 2.7, ease: "none", repeat: -1 }, 0)
+    .to(".orbit-dot", { scale: 1.45, yoyo: true, repeat: -1, stagger: 0.18, duration: 0.72, ease: "sine.inOut" }, 0)
+    .to(
+      ".evaluation-steps span",
+      {
+        backgroundColor: "var(--admin-panel-bg)",
+        color: "var(--admin-text)",
+        yoyo: true,
+        repeat: -1,
+        stagger: 0.55,
+        duration: 0.55,
+        ease: "sine.inOut",
+      },
+      0,
+    );
+
+  steps.forEach((step, index) => {
+    gsap.delayedCall(index * 2.4, () => {
+      if (!elements.evaluationOverlay.classList.contains("is-hidden")) {
+        elements.evaluationStep.textContent = step;
+      }
+    });
+  });
+}
+
+function stopEvaluationAnimation() {
+  if (!window.gsap) {
+    elements.evaluationOverlay.classList.add("is-hidden");
+    return;
+  }
+
+  state.evaluationProgressTween?.kill();
+  elements.evaluationProgress.textContent = "100%";
+  gsap.to(elements.evaluationOverlay, {
+    opacity: 0,
+    duration: 0.22,
+    ease: "power2.out",
+    onComplete: () => {
+      state.evaluationTimeline?.kill();
+      elements.evaluationOverlay.classList.add("is-hidden");
+      gsap.set(elements.evaluationOverlay, { clearProps: "opacity" });
+      gsap.set([".evaluation-orbit", ".orbit-dot", ".evaluation-steps span"], { clearProps: "all" });
+    },
+  });
+}
+
+function animateResponse() {
+  if (!window.gsap) {
+    return;
+  }
+
+  gsap.fromTo(
+    [".score-card", ".response-columns section", ".response-panel > section"],
+    { y: 10, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.42, stagger: 0.05, ease: "power3.out" },
+  );
+}
+
 function renderList(items, fallback) {
   if (!items || !items.length) {
     return `<li>${escapeHtml(fallback)}</li>`;
@@ -390,7 +504,33 @@ function renderList(items, fallback) {
 }
 
 function formatFeedback(text) {
-  return escapeHtml(text).replace(/\n/g, "<br>");
+  return formatInline(text).replace(/\n/g, "<br>");
+}
+
+function renderFeedbackCard(payload) {
+  const feedback = payload.feedback || "Sin feedback.";
+  const hasErrors = Array.isArray(payload.errors) && payload.errors.length > 0;
+  const paragraphs = feedback
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const intro = paragraphs.shift() || feedback;
+  const body = paragraphs.length ? paragraphs.map(formatFeedback).join("") : "";
+
+  return `
+    <div class="feedback-readable ${hasErrors ? "has-observations" : "is-clear"}">
+      <div class="feedback-readable__status">
+        <span>${hasErrors ? "Requiere revision" : "Sin pendientes objetivos"}</span>
+      </div>
+      <p class="feedback-readable__lead">${formatInline(intro)}</p>
+      ${body ? `<div class="feedback-readable__body">${body}</div>` : ""}
+      ${payload.passed ? "" : '<p class="feedback-readable__next">Reelabora la actividad tomando estas observaciones y volve a entregarla para una nueva revision.</p>'}
+    </div>
+  `;
+}
+
+function formatInline(text) {
+  return escapeHtml(text).replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 }
 
 function applyPreset(name) {

@@ -1,4 +1,4 @@
-@import "../node_modules/@digitalhouse-tech/react-lib-cygnus-ui/dist/css/globals.css";
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&family=Montserrat:wght@400;600;700;800&display=swap");
 @import "tailwindcss";
 
 @theme inline {
@@ -8,45 +8,53 @@
 
 :root {
   color-scheme: light;
-  --color-primary: #f5f7fb;
+  --font-sans: "Archivo";
+  --font-display: "Montserrat";
+  --color-primary: #ffffff;
   --color-secondary: #ffffff;
-  --color-tertiary: #eef2f7;
-  --color-quaternary: #e2e8f0;
-  --color-alternative: #f3f5f9;
+  --color-tertiary: #f7f7f7;
+  --color-quaternary: #e5e5e5;
+  --color-alternative: #f7f7f7;
   --color-alternative-lighter: #ffffff;
-  --color-foreground-primary: #121826;
-  --color-foreground-secondary: #526072;
-  --color-foreground-quaternary: #94a3b8;
-  --color-border-primary: #d9e1ec;
-  --color-border-secondary: #e6ebf2;
-  --app-page-bg:
-    radial-gradient(circle at top left, rgba(138, 109, 241, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 245, 249, 1) 72%),
-    #f3f5f9;
-  --app-panel: rgba(255, 255, 255, 0.88);
-  --app-panel-soft: rgba(238, 242, 247, 0.92);
-  --app-muted: rgba(18, 24, 38, 0.04);
-  --app-border: rgba(15, 23, 42, 0.1);
-  --app-border-strong: rgba(15, 23, 42, 0.16);
-  --app-code-bg: rgba(15, 23, 42, 0.05);
-  --app-selection: rgba(138, 109, 241, 0.2);
-  --app-user-bubble-bg: var(--color-accent-royal-velvet-primary);
+  --color-foreground-primary: #000000;
+  --color-foreground-secondary: #4c4c4c;
+  --color-foreground-quaternary: #999999;
+  --color-border-primary: #e5e5e5;
+  --color-border-secondary: #f0f0f0;
+  --dh-black: #000000;
+  --dh-white: #ffffff;
+  --dh-data: #00cc7e;
+  --dh-data-strong: #00a365;
+  --dh-data-soft: #e8fff5;
+  --dh-neutral-50: #fafafa;
+  --dh-neutral-100: #f4f4f4;
+  --dh-neutral-200: #e5e5e5;
+  --dh-neutral-500: #666666;
+  --app-page-bg: #ffffff;
+  --app-panel: #ffffff;
+  --app-panel-soft: #f7f7f7;
+  --app-muted: #f4f4f4;
+  --app-border: #e5e5e5;
+  --app-border-strong: #000000;
+  --app-code-bg: #f4f4f4;
+  --app-selection: rgba(0, 204, 126, 0.22);
+  --app-user-bubble-bg: var(--dh-black);
   --app-user-bubble-foreground: #ffffff;
   --app-user-bubble-muted: rgba(255, 255, 255, 0.82);
-  --app-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
-  --admin-shell-bg: linear-gradient(180deg, #5865f2 0 4px, #eef2f7 4px 100%);
+  --app-shadow: none;
+  --admin-shell-bg: #ffffff;
   --admin-panel-bg: #ffffff;
-  --admin-panel-border: #d9e1ec;
-  --admin-panel-subtle: #f6f8fb;
-  --admin-panel-soft: #eef2f7;
-  --admin-panel-strong: #e5ebf3;
-  --admin-text: #121826;
-  --admin-muted: #66758a;
-  --admin-faint: #94a3b8;
-  --admin-accent: #ea8450;
-  --admin-accent-soft: #f6d3c0;
-  --admin-success: #2f8f57;
-  --admin-success-soft: rgba(47, 143, 87, 0.12);
+  --admin-panel-border: #000000;
+  --admin-panel-subtle: #f7f7f7;
+  --admin-panel-soft: #f4f4f4;
+  --admin-panel-strong: #e5e5e5;
+  --admin-text: #000000;
+  --admin-muted: #4c4c4c;
+  --admin-faint: #999999;
+  --admin-accent: #00cc7e;
+  --admin-accent-soft: #e8fff5;
+  --admin-success: #00a365;
+  --admin-success-soft: rgba(0, 204, 126, 0.14);
   --compact-chat-bg: #fdfdfd;
   --compact-chat-text: #1c1e21;
   --compact-chat-muted: #7b8190;
@@ -123,7 +131,7 @@ html {
 body {
   background: var(--app-page-bg);
   color: var(--color-foreground-primary);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 a {

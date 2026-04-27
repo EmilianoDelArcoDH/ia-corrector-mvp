@@ -166,7 +166,7 @@ def _xlsx_to_text(raw: bytes) -> str:
     except ImportError:
         raise HTTPException(status_code=500, detail="El soporte XLSX requiere tener openpyxl instalado.")
 
-    workbook = load_workbook(BytesIO(raw), data_only=True)
+    workbook = load_workbook(BytesIO(raw), data_only=False)
     sheet_texts: list[str] = []
     for sheet in workbook.worksheets:
         rows: list[str] = []

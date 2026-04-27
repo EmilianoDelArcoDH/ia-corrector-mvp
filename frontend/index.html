@@ -8,15 +8,37 @@
     <link rel="stylesheet" href="/assets/playground.css" />
   </head>
   <body>
+    <section id="evaluationOverlay" class="evaluation-overlay is-hidden" aria-live="polite" aria-label="Evaluando entrega">
+      <div class="evaluation-panel">
+        <div class="evaluation-orbit">
+          <span class="orbit-dot"></span>
+          <span class="orbit-dot"></span>
+          <span class="orbit-dot"></span>
+          <div class="evaluation-core">
+            <span id="evaluationProgress">0%</span>
+          </div>
+        </div>
+        <div class="evaluation-copy">
+          <p class="eyebrow">Evaluacion en curso</p>
+          <h2 id="evaluationTitle">Analizando entrega</h2>
+          <p id="evaluationStep">Preparando lectura del archivo.</p>
+        </div>
+        <div class="evaluation-steps">
+          <span>Lectura</span>
+          <span>Rubrica</span>
+          <span>Feedback</span>
+        </div>
+      </div>
+    </section>
+
     <main class="page-shell playground-shell">
       <div class="page-grid playground-grid">
         <section class="playground-hero surface-panel">
           <div>
-            <p class="eyebrow">Sandbox data</p>
-            <h1>Vista de prueba para correcciones con IA</h1>
+            <p class="eyebrow">Corrector educativo</p>
+            <h1>Revisión de entregas</h1>
             <p class="hero-copy">
-              Proba entregas de Data Analytics con texto, links publicos y archivos reales contra la API sin tocar el
-              CSS base del proyecto.
+              Evaluá actividades de Data Analytics con archivos reales, enlaces públicos o contenido pegado.
             </p>
           </div>
           <div class="hero-meta surface-muted">
@@ -82,7 +104,7 @@
               <div class="panel-header">
                 <div>
                   <h3>Entradas JSON</h3>
-                  <p>Usa este bloque para probar `POST /feedback` con entregas de data pegadas o links publicos.</p>
+                  <p>Contenido pegado o enlaces públicos para revisar con la API.</p>
                 </div>
                 <button type="button" id="addEntryButton" class="secondary-button">Agregar entrada</button>
               </div>
@@ -93,7 +115,7 @@
               <div class="panel-header">
                 <div>
                   <h3>Subida de archivos</h3>
-                  <p>Este flujo llama a `POST /feedback/upload` y sirve para CSV, XLSX, capturas exportadas o archivos auxiliares.</p>
+                  <p>CSV, XLSX, capturas exportadas o archivos auxiliares.</p>
                 </div>
               </div>
               <label class="field field-upload">
@@ -137,7 +159,7 @@
                     <ul id="successList" class="list-block"></ul>
                   </section>
                   <section>
-                    <h3>Puntos a corregir</h3>
+                    <h3>Observaciones</h3>
                     <ul id="errorList" class="list-block"></ul>
                   </section>
                 </div>
@@ -146,21 +168,21 @@
                   <div id="contextList" class="chip-list"></div>
                 </section>
                 <section>
-                  <h3>Feedback generado</h3>
+                  <h3>Lectura docente</h3>
                   <article id="feedbackText" class="prose-app feedback-box surface-muted"></article>
                 </section>
               </div>
             </section>
 
-            <section class="surface-panel sidebar-panel">
-              <div class="section-heading">
-                <div>
-                  <p class="section-kicker">Clases disponibles</p>
-                  <h2>Referencia rápida</h2>
-                </div>
-              </div>
+            <details class="surface-panel sidebar-panel catalog-panel">
+              <summary>
+                <span>
+                  <small class="section-kicker">Clases disponibles</small>
+                  Referencia rápida
+                </span>
+              </summary>
               <div id="classCatalog" class="catalog-list"></div>
-            </section>
+            </details>
           </aside>
         </section>
       </div>
@@ -201,6 +223,7 @@
       </article>
     </template>
 
+    <script src="/node_modules/gsap/dist/gsap.min.js"></script>
     <script src="/assets/app.js" defer></script>
   </body>
 </html>
